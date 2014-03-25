@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="jp">
+<head>
+<meta charset="utf-8" />
+<title>Heimusu</title>
+<link rel="stylesheet" href="style.css" />
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+    google.load('feeds','1');
+    function initialize(){
+	var feed = new google.feeds.Feed("http://d.hatena.ne.jp/heimusu/rss");
+	feed.load(function(rss){
+	    if(!rss.error){
+		var channel = new Array();
+		var entry = new Array();
+
+		channel['title']=rss.feed.title;
+		channel['link']=rss.feed.link;
+		for(var i=0; i<rss.feed.entries.length; i++){
+		    entry[i] = {
+			title : rss.feed.entries[i].title,
+			link : rss.feed.entries[i].link
+		    };
+		}
+	var FeedTitle = '<h3>'
+	    +'<a href="' + channel['link'] + '">' + channel['title'] + '</a>'
+	    +'</h3>';
+	var FeedContents = '<h4>'
+	    +'<a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a>'
+	    +'</h4>'
+	    +'<h4>'
+	    +'<a href="' + entry[1]['link']+'">' + entry[1]['title'] + '</a>'
+	    +'</h4>';
+
+	$('#topicsTitle').append(FeedTitle);
+	$('#topicsContents').append(FeedContents);
+		}
+	});
+    }
+    google.setOnLoadCallback(initialize);
+</script>
+</head>
+<body>
+    <div id="header"></div>
+     <div id="contents">
+	<h1 class = "title">Heimusu</h1>
+	<h1 class = "subscription">Please select contents?</h1>
+    </div>
+    <div id="sidebar">
+	<a href="about.html">about me</a><br>
+	<a href="http://d.hatena.ne.jp/heimusu/">blog</a><br>
+	<a href="https://twitter.com/heimusu">twitter</a><br>
+	<a href="https://github.com/heimusu">github</a>
+    </div>
+    <div id="feeds"></div>
+    <div id="topicsTitle"></div>
+    <div id="topicsContents"></div>
+    <div id="footer">
+    </div>
+</body>
+</html>
+
