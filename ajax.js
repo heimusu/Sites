@@ -9,11 +9,14 @@ $( function(){
 		success:function(data){
 		    alert("ok");
 		    console.log(data);
-		    var res = JSON.stringify(data);
-		    console.log(res);
-		    /*$.each(data,function(){
-			alert(data.id);
-		    });*/
+		    /*var res = JSON.stringify(data);
+		    console.log(res);*/
+		    //alert(data.busstop[0].id);
+		    for(var i=0;i<44;i++){
+			var count=0;
+			count += data.busstop[i].id;
+		    }
+		    alert(count);
 		},
 		error:function(data){
 		    alert("ng");
