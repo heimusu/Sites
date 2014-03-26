@@ -9,8 +9,11 @@ $( function(){
 		success:function(data){
 		    alert("ok");
 		    console.log(data);
-		    var stop = busstop[0].name;
-		    alert(stop);
+		    var res = JSON.stringify(data);
+		    console.log(res);
+		    /*$.each(data,function(){
+			alert(data.id);
+		    });*/
 		},
 		error:function(data){
 		    alert("ng");
