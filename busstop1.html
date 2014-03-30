@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="utf-8"/>
+    <title>JR鯖江駅（1番のりば）</title>
+</head>
+<body>
+    <h5>バス停名：JR鯖江駅（1番のりば）</h5>
+    <p id="hoge1">hoge</p>
+    <p id="hoge2">hoge</p>
+
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+    $( function(){
+	    $.ajax({
+		url:'http://tutujibus.com/timetableLookup.php?rosenid=1&callback=?',
+		type:'GET',
+		dataType:'jsonp',
+		jsonp:'callback',
+		success:function(data){
+		    //alert("ok");
+		    console.log(data);
+
+		    /*indicate table*/
+		    $(function(){
+			var length = data.timetable.length;
+			var table;
+			var row_no=1;
+			for(var i=0;i<length;i++){
+			    var arraylistlength = data.timetable[i].list.length;
+			    for(var j=0;j<arraylistlength;j++){
+				if(data.timetable[i].list[j].busstopid == 1){
+				    //console.log('%s,%s,%s',data.timetable[i].binid,data.timetable[i].list[j].time,data.timetable[i].destination);
+					table = document.getElementById("table1");
+					var row = table.insertRow(-1);
+					var cell = row.insertCell(-1);
+					cell.appendChild(document.createTextNode(data.timetable[i].destination));
+					cell = row.insertCell(-1);
+					cell.appendChild(document.createTextNode(data.timetable[i].list[j].time));
+					row_no++;
+				}
+			    }
+			}
+		    });
+		    /*convert test*/
+		    console.log(Number(data.timetable[0].list[0].time[0]),Number(data.timetable[0].list[0].time[1]));
+
+		    $('#hoge1').html(data.timetable[0].destination);
+
+
+		},
+		error:function(data){
+		    alert("Access NG");
+		}
+	    });
+	});
+
+    
+    
+</script>
+
+<table border="2">
+<tr><th>name</th><th>time</th></tr>
+<tbody id="table1"></tbody>
+</table>
+
+</body>
+</html>
