@@ -6,8 +6,6 @@
 </head>
 <body>
     <h5>バス停名：JR鯖江駅（1番のりば）</h5>
-    <p id="hoge1">hoge</p>
-    <p id="hoge2">hoge</p>
 
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
     <script type="text/javascript">
@@ -21,16 +19,36 @@
 		    //alert("ok");
 		    console.log(data);
 
-		    /*indicate table*/
 		    $(function(){
+			/*table variable*/
 			var length = data.timetable.length;
 			var table;
 			var row_no=1;
+			
+			/*time variable*/
+			var hour1;
+			var minute1;
+			var hour2;
+			var minute2;
+			var comp1;
+			var comp2;
+			var comp3=59;
+			var res1=0;
+			var res2=0;
+			var res3=0;
+			var res4=0;
+			var DD = new Date();
+			var flag1 = 0;
+			var flag2 = 0;
+			hour2 = DD.getHours();
+			minute2 = DD.getMinutes();
+			
+			/*main function*/
 			for(var i=0;i<length;i++){
 			    var arraylistlength = data.timetable[i].list.length;
 			    for(var j=0;j<arraylistlength;j++){
 				if(data.timetable[i].list[j].busstopid == 1){
-				    //console.log('%s,%s,%s',data.timetable[i].binid,data.timetable[i].list[j].time,data.timetable[i].destination);
+					/*indicate table*/
 					table = document.getElementById("table1");
 					var row = table.insertRow(-1);
 					var cell = row.insertCell(-1);
@@ -41,12 +59,45 @@
 				}
 			    }
 			}
-		    });
-		    /*convert test*/
-		    console.log(Number(data.timetable[0].list[0].time[0]),Number(data.timetable[0].list[0].time[1]));
-
-		    $('#hoge1').html(data.timetable[0].destination);
-
+			/*debug code*/
+			hour2 = 16;
+			minute2 = 35;
+			/*indicate next time*/
+			for(i=0;i<length;i++){
+			    arraylistlength=data.timetable[i].list.length;
+			    for(j=0;j<arraylistlength;j++){
+				if(data.timetable[i].list[j].busstopid==1){
+				    hour1 = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
+				    minute1 = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
+					
+				    comp1 = Math.abs(hour2 - hour1);
+				    comp2 = Math.abs(minute2 - minute1);
+				    console.log(comp2);
+				    if(comp1 == 0){
+					flag1 = 1;
+					res1 = hour2;
+					if(comp2<comp3 && minute1 > minute2){
+					    comp3 = comp2;
+					    res3 = minute1;
+					}
+				    }
+				    else if(comp1 == 1){
+					res2 = hour2;
+					if(comp2<comp3 && minute1 > minute2){
+					    comp3 = comp2;
+					    res4 = minute1;
+					}
+				    }
+				}
+			    }
+		    }
+		    if(flag1 == 1){
+			$("#message").html(res1+"時"+res3+"分");
+		    }
+		    else if(flag1 == 0){
+			$("#message").html(res2+"時"+res4+"分");
+		    }
+		});
 
 		},
 		error:function(data){
@@ -59,8 +110,10 @@
     
 </script>
 
+<div id="message"></div>
+
 <table border="2">
-<tr><th>name</th><th>time</th></tr>
+<tr><th>行き先</th><th>発車時刻</th></tr>
 <tbody id="table1"></tbody>
 </table>
 
