@@ -9,7 +9,7 @@
     <script type="text/javascript">
     $( function(){
 	    $.ajax({
-		url:'http://tutujibus.com/busstopLookup.php?rosenid=11&callback=?',
+		url:'http://tutujibus.com/busstopLookup.php?rosenid=1&callback=?',
 		type:'GET',
 		dataType:'jsonp',
 		jsonp:'callback',
@@ -33,7 +33,7 @@
 			    cell = row.insertCell(-1);
 			    cell.appendChild(document.createTextNode(data.busstop[i].name));
 			    row_no++;
-			    if(data.busstop[i].name == "JR鯖江駅（１番のりば）"){
+			    if(data.busstop[i].name == "JR鯖江駅（２番のりば）"){
 				alert("hit!");
 			    }
 			}

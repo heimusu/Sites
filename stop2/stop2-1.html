@@ -2,10 +2,10 @@
 <html lang="jp">
 <head>
     <meta charset="utf-8"/>
-    <title>JR鯖江駅（1番のりば）</title>
+    <title>JR鯖江駅（2番のりば）</title>
 </head>
 <body>
-    <h5>バス停名：JR鯖江駅（1番のりば）</h5>
+    <h5>バス停名：JR鯖江駅（2番のりば）</h5>
     <form>
     <p>
 	<select id="select" name="busstop">
@@ -22,13 +22,13 @@
     </p>
     <input type=button onClick="top.location.href=busstop.value" value="調べる">
     </form>
-    <h6>JR鯖江駅（1番のりば）発・丹南高校線のバスの運行時間についてお知らせします</h6>
+    <h6>JR鯖江駅（2番のりば）発・中央線のバスの運行時間についてお知らせします</h6>
 
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
     <script type="text/javascript">
     $( function(){
 	    $.ajax({
-		url:'http://tutujibus.com/timetableLookup.php?rosenid=11&callback=?',
+		url:'http://tutujibus.com/timetableLookup.php?rosenid=1&callback=?',
 		type:'GET',
 		dataType:'jsonp',
 		jsonp:'callback',
@@ -65,7 +65,7 @@
 			for(var i=0;i<length;i++){
 			    var arraylistlength = data.timetable[i].list.length;
 			    for(var j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid == 443){
+				if(data.timetable[i].list[j].busstopid == 32){
 					/*indicate table*/
 					table = document.getElementById("table1");
 					var row = table.insertRow(-1);
@@ -85,7 +85,7 @@
 			for(i=0;i<length;i++){
 			    arraylistlength=data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid==443){
+				if(data.timetable[i].list[j].busstopid==32){
 				    hour1 = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				    minute1 = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				    comp1 = hour1 - hour2;
@@ -94,6 +94,7 @@
 					res1 = hour1;
 					if(minute2 < minute1 && flag2 == 0){
 					    res3 = minute1;
+					    console.log(res3);
 					    flag2 = 1;
 					}
 				    }
@@ -109,7 +110,7 @@
 			    }
 		    }
 		    console.log(flag1,flag2,flag3,flag4);
-		    if(flag1 == 1 && flag3 == 0 || flag2 == 1){
+		    if(flag1 == 1 && flag3 == 0 || flag2 == 1 && res3 > 0){
 			$("#message").html("次のバスは"+res1+"時"+res3+"分発車です");
 			var flag5 = 1;
 		    }
@@ -117,7 +118,7 @@
 			$("#message").html("次のバスは"+res2+"時"+res4+"分発車です");
 			var flag6 = 1
 		    }
-		    else if(flag1 == 0){
+		    else if(flag1 == 0 || res3 < 0){
 			$("#message").html("バスはしばらくこないようです");
 		    }
 		   
