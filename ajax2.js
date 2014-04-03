@@ -1,8 +1,8 @@
 $( function(){
-    $('#ajax-button').click(
+    $('#ajax-button2').click(
 	function(){
 	    $.ajax({
-		url:'http://tutujibus.com/timetableLookup.php?rosenid=12&callback=?',
+		url:'http://tutujibus.com/busstopLookup.php?rosenid=1&callback=?',
 		type:'GET',
 		dataType:'jsonp',
 		jsonp:'callback',
@@ -10,12 +10,7 @@ $( function(){
 		    alert("ok");
 		    console.log(data);
 
-		    /*data convert for text*/
-		    /*var res = JSON.stringify(data);
-		    console.log(res);*/
-		    /*alert(data.timetable[0].destination);
-		    alert(data.timetable[0].list[0].time);*/
-		    
+		    /*
 		    var length = data.timetable.length; 
 		    for(var i=0;i<length;i++){
 			var arraylistlength = data.timetable[i].list.length;
@@ -25,6 +20,7 @@ $( function(){
 			    }
 			}
 		    }
+		    */
 
 		    alert("end");
 

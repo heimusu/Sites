@@ -6,14 +6,28 @@
 </head>
 <body>
     <h5>バス停名：JR鯖江駅（1番のりば）</h5>
-    <h6>路線：中央線</h6>
+    <form>
+    <p>
+	<select id="select" name="busstop">
+	    <option value="#"></option>
+	    <option value="stop1-1.html">中央線</option>
+	    <option value="stop1-2.html">鯖江南線</option>
+	    <option value="stop1-3.html">新横江線</option>
+	    <option value="stop1-8.html">豊線</option>
+	    <option value="stop1-9.html">中河・北中山線</option>
+	    <option value="stop1-10.html">河和田線</option>
+	    <option value="stop1-11.html">丹南高校線</option>
+	</select>
+    </p>
+    <input type=button onClick="top.location.href=busstop.value" value="調べる">
+    </form>
     <h6>JR鯖江駅（1番のりば）発・中央線のバスの運行時間についてお知らせします</h6>
 
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
     <script type="text/javascript">
     $( function(){
 	    $.ajax({
-		url:'http://tutujibus.com/timetableLookup.php?rosenid=1&callback=?',
+		url:'http://tutujibus.com/timetableLookup.php?rosenid=11&callback=?',
 		type:'GET',
 		dataType:'jsonp',
 		jsonp:'callback',
@@ -50,7 +64,7 @@
 			for(var i=0;i<length;i++){
 			    var arraylistlength = data.timetable[i].list.length;
 			    for(var j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid == 1){
+				if(data.timetable[i].list[j].busstopid == 443){
 					/*indicate table*/
 					table = document.getElementById("table1");
 					var row = table.insertRow(-1);
@@ -70,7 +84,7 @@
 			for(i=0;i<length;i++){
 			    arraylistlength=data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid==1){
+				if(data.timetable[i].list[j].busstopid==443){
 				    hour1 = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				    minute1 = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				    comp1 = hour1 - hour2;
