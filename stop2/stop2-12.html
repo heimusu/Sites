@@ -22,13 +22,13 @@
     </p>
     <input type=button onClick="top.location.href=busstop.value" value="調べる">
     </form>
-    <h6>JR鯖江駅（2番のりば）発・河和田線のバスの運行時間についてお知らせします</h6>
+    <h6>JR鯖江駅（2番のりば）発・歴史の道線のバスの運行時間についてお知らせします</h6>
 
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
     <script type="text/javascript">
     $( function(){
 	    $.ajax({
-		url:'http://tutujibus.com/timetableLookup.php?rosenid=10&callback=?',
+		url:'http://tutujibus.com/timetableLookup.php?rosenid=12&callback=?',
 		type:'GET',
 		dataType:'jsonp',
 		jsonp:'callback',
@@ -67,7 +67,7 @@
 			for(var i=0;i<length;i++){
 			    var arraylistlength = data.timetable[i].list.length;
 			    for(var j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid == 353){
+				if(data.timetable[i].list[j].busstopid == 463){
 					/*indicate table*/
 					table = document.getElementById("table1");
 					var row = table.insertRow(-1);
@@ -92,7 +92,7 @@
 			for(i=0;i<length;i++){
 			    arraylistlength=data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid==353){
+				if(data.timetable[i].list[j].busstopid==463){
 				    hour1 = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				    minute1 = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				    comp1 = hour1 - hour2;

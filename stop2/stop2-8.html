@@ -80,8 +80,8 @@
 			    }
 			}
 			/*debug code*/
-			/*hour2 = 17;
-			minute2 = 25;*/
+			/*hour2 = 15;
+			minute2 = 23;*/
 
 			/*indicate next time*/
 			/*hour2 & minute2 = nowtime, hour1&minute1 = next time*/
@@ -182,8 +182,10 @@
 				leftminute = nextminute - nowMinute;
 			    }
 			    else if(lefthour == 2){
-				lefthour = 1;
-				nextminute += 60;
+				if(nowMinute > nextminute){
+				    lefthour = 1;
+				    nextminute += 60;
+				}
 				leftminute = nextminute - nowMinute;
 				if(leftminute == 60){
 				    lefthour = 2;
