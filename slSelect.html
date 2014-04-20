@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+    <!-- [if it IE 9] -->
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <!-- End If -->
+    <title>次のバスはいつ？</title>
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="ajax.js"></script>
+    <script type="text/javascript" src="ajax2.js"></script>
+    <link rel="stylesheet" href="stopstyle.css">
+<head>
+<body>
+    <h1>次のバスはいつ？</h1>
+    <h3>該当のバス停で，次に来るバスを調べます</h3>
+    <form>
+    <p>
+	<h4>乗車するバス停を選んでください(図書館行き）</h4>
+	<select name="busstop">
+	    <option value="#"></option>
+	    <option value="stop1/stop1-1.html">JR鯖江駅（1番のりば）</option>
+	    <option value="stop2/stop2-1.html">JR鯖江駅（2番のりば）</option>
+	    <option value="stop3/stop3-1.html">本町1丁目（東）</option>
+	</select>
+    </p>
+    <input type=button onClick="top.location.href=busstop.value" value="調べる">
+    </form>
+
+    <!--<button id="ajax-button">load</button>
+    <button id="ajax-button2">load2</button>
+    <a href="stopdata.html">stopdata</a> -->
+
+</body>
+</html>
