@@ -8,32 +8,11 @@
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <!-- End If -->
+    <link rel="stylesheet" href="stopstyle.css">
 </head>
 <body>
-    <h5>バス停名：JR鯖江駅（1番のりば）</h5>
-    <form>
-    <p>
-<!--	<select id="select" name="busstop">
-	    <option value="#"></option>
-	    <option value="stop1-1.html">中央線</option>
-	    <option value="stop1-2.html">鯖江南線</option>
-	    <option value="stop1-3.html">新横江線</option>
-	    <option value="stop1-8.html">豊線</option>
-	    <option value="stop1-9.html">中河・北中山線</option>
-	    <option value="stop1-10.html">河和田線</option>
-	    <option value="stop1-11.html">丹南高校線</option>
-	    <option value="stop1-12.html">歴史の道線</option>
-	</select>
--->
-	<select id="select" name="busstop">
-	    <option value="#"></option>
-	    <option value="stop2-1.html">JR鯖江駅（2番のりば）</option>
-	    <option value="stop3-1.html">本町1丁目（東）発・中央線</option>
-	</select>
-    </p>
-    <input type=button onClick="top.location.href=busstop.value" value="調べる">
-    </form>
-    <h6>JR鯖江駅（1番のりば）発・中央線のバスの運行時間についてお知らせします</h6>
+    <h3>バス停名：JR鯖江駅（1番のりば）</h3>
+    <h5>JR鯖江駅（1番のりば）発・中央線のバスの運行時間についてお知らせします</h5>
 
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
     <script type="text/javascript">
@@ -188,14 +167,17 @@
     
     
 </script>
-
-<div id="message"></div>
-<div id="time"></div>
+<form>
+    <div id="message"></div>
+    <div id="time"></div>
+    <input type=button onClick="location.href='../busstopselect.html'" value="戻る" class="btn1">
+</form>
 
 <table border="2">
 <tr><th>行き先</th><th>発車時刻</th></tr>
 <tbody id="table1"></tbody>
 </table>
+
 
 </body>
 </html>
