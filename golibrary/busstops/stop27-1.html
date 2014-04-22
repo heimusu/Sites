@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+    <!-- [if it IE 9] -->
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <!-- End If -->
+    <title>神明公民館（東）</title>
+</head>
+<body>
+    <h5>バス停名：神明公民館（東）</h5>
+    <!--
+    <form>
+    <p>
+	<select id="select" name="busstop">
+	    <option value="#"></option>
+	    <option value="stop2-1.html">中央線</option>
+	    <option value="stop2-2.html">鯖江南線</option>
+	    <option value="stop2-3.html">新横江線</option>
+	    <option value="stop2-8.html">豊線</option>
+	    <option value="stop2-9.html">中河・北中山線</option>
+	    <option value="stop2-10.html">河和田線</option>
+	    <option value="stop2-11.html">丹南高校線</option>
+	    <option value="stop2-12.html">歴史の道線</option>
+	</select>
+    </p>
+    <input type=button onClick="top.location.href=busstop.value" value="調べる">
+    </form>
+    -->
+
+    <form>
+	<p>
+	    <select id="select" name="line">
+		<option value="#"></option>
+		<option value="stop2.html">ｱｲｱｲ鯖江（文化の館）（西)</option>
+	    </select>
+	</p>
+	<input type=button onClick="top.location.href=line.value" value="調べる">
+    </form>
+    
+    <h6>神明公民館（東）発・中央線のバスの運行時間についてお知らせします</h6>
+
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+    $( function(){
+	    $.ajax({
+		url:'http://tutujibus.com/timetableLookup.php?rosenid=1&callback=?',
+		type:'GET',
+		dataType:'jsonp',
+		jsonp:'callback',
+		success:function(data){
+		    //alert("ok");
+		    console.log(data);
+
+		    $(function(){
+			/*table variable*/
+			var length = data.timetable.length;
+			var table;
+			var row_no=1;
+			
+			/*time variable*/
+			var hour1;
+			var minute1;
+			var hour2;
+			var minute2;
+			var comp1;
+			var res1=0;
+			var res2=0;
+			var res3=0;
+			var res4=0;
+			var DD = new Date();
+			var flag1 = 0;
+			var flag2 = 0;
+			var flag3 = 0;
+			var flag4 = 0;
+			var flag5 = 0;
+			var flag6 = 0;
+			var flag7 = 0;
+			var tmp;
+			hour2 = DD.getHours();
+			minute2 = DD.getMinutes();
+			
+			/*main function*/
+			for(var i=0;i<length;i++){
+			    var arraylistlength = data.timetable[i].list.length;
+			    for(var j=0;j<arraylistlength;j++){
+				if(data.timetable[i].list[j].busstopid == 43){
+					/*indicate table*/
+					table = document.getElementById("table1");
+					var row = table.insertRow(-1);
+					var cell = row.insertCell(-1);
+					cell.appendChild(document.createTextNode(data.timetable[i].destination));
+					cell = row.insertCell(-1);
+					cell.appendChild(document.createTextNode(data.timetable[i].list[j].time));
+					row_no++;
+				}
+			    }
+			}
+			/*debug code*/
+			/*hour2 = 6;
+			minute2 = 0;*/
+
+			/*indicate next time*/
+			/*hour2 & minute2 = nowtime, hour1&minute1 = next time*/
+			/*flag1 = 1時間以内にバスが来る*/
+			/*flag2 = 0時間res3分以内にバスが来る*/
+			/*flag3 = 1時間or2時間以内にバスが来る*/
+			/*flag4 = 当分バスは来ない*/
+			for(i=0;i<length;i++){
+			    arraylistlength=data.timetable[i].list.length;
+			    for(j=0;j<arraylistlength;j++){
+				if(data.timetable[i].list[j].busstopid==43){
+				    hour1 = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
+				    minute1 = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
+				    comp1 = hour1 - hour2;
+				    if(comp1 == 0){
+					flag1 = 1;
+					res1 = hour1;
+					if(minute2 < minute1 && flag2 == 0){
+					    res3 = minute1;
+					    console.log(res3);
+					    flag2 = 1;
+					}
+				    }
+				    else if(comp1 == 1 || comp1 == 2){
+					if(comp1 == 2 && flag7 == 0){
+					    res2 = hour2 + comp1;
+					}
+					else if(res2 < hour1 && flag7 == 0){
+					    res2 = hour1;
+					    flag7 = 1;
+					}
+					//if(minute2 > minute1 && flag3 == 0){
+					if(flag3 == 0 && res4 < minute1){
+					    res4 = minute1;
+					    flag3 = 1;
+					}
+					flag4 = 1;
+				    }
+				}
+			    }
+		    }
+		    console.log(flag1,flag2,flag3,flag4);
+		    console.log(res1,res2,res3,res4);
+		    if(flag1 == 1 && flag3 == 0 && res3 > 0|| flag2 == 1 && res3 > 0){
+			$("#message").html("次のバスは"+res1+"時"+res3+"分発車です");
+			flag5 = 1;
+		    }
+		    else if(flag3 == 1 && flag4 == 1 && res2 > 0 && res4 > 0){
+			$("#message").html("次のバスは" + res2 + "時" + res4 + "分発車です");
+			flag6 = 1;
+		    }
+
+		    /*この判定必要？*/
+		    else if(flag1 == 0 && flag3 ==1 && flag4 == 0){
+			$("#message").html("次のバスは" + res2 + "時" + res4 + "分発車です");
+			flag6 = 1;
+		    }
+		    else if(flag1 == 1  && flag4 == 1 && flag2 == 0){
+			$("#message").html("次のバスは" + res2 + "時" + res4 + "分発車です");
+			    flag6 = 1;
+		    }
+		    //else if(res3 < 0 || flag1 == flag2 == flag3 == flag4 != 1 || flag1 == 1){
+		    else if(res3 < 0 || flag1 == flag2 == flag3 == flag4 != 0 || flag1 == 1){
+			$("#message").html("バスはしばらくこないようです");
+		    }
+		   
+		    var lefthour=0;
+		    var leftminute=0;
+		    $(function(){
+			countDown();
+		    });
+
+		    function countDown(){
+			var nowtime = new Date();
+			var nowHour = hour2;//nowtime.getHours();
+			var nowMinute = minute2;//nowtime.getMinute();;
+			var nexthour=0;
+			var nextminute=0;
+			var a_day = 24 * 60 * 60 * 1000;
+			//console.log(nowHour,nowMinute,nexthour,nextminute);
+			console.log(flag5,flag6);
+			if(flag5 == 1){
+			    nextminute = res3;
+			    lefthour = 0;
+			    leftminute = nextminute - nowMinute;
+			}
+			else if(flag6 == 1){
+			    nexthour = res2;
+			    nextminute = res4;
+			    lefthour = Math.abs(nexthour - nowHour);
+			    //lefthour = nexthour - nowHour;
+			    if(lefthour == 1){
+				//lefthour = Math.floor((lefthour % a_day)/(60 * 60 * 1000));
+				if(nextminute < nowMinute){
+				    lefthour = 0;
+				    nextminute += 60;
+				}
+				leftminute = nextminute - nowMinute;
+			    }
+			    else if(lefthour == 2){
+				if(nowMinute > nextminute){
+				    lefthour = 1;
+				    nextminute += 60;
+				}
+				leftminute = nextminute - nowMinute;
+				if(leftminute == 60){
+				    lefthour = 2;
+				    leftminute = 0;
+				}
+			    }
+			    else if(lefthour == 0){
+				leftminute = nextminute - nowMinute;
+			    }
+			}
+			else if(flag5 = flag6 = 0){
+			    $("#time").html("");
+			}
+			if(lefthour != 0 || leftminute != 0 && leftminute > 0){
+			    $("#time").html("発車まで残り"+ lefthour + "時間" + leftminute + "分");
+			    setTimeout('countDown()',1000);
+			}
+			/*else if(lefthour == -1 && leftminute == 0){
+			    $("#time").html("発車まで残り1時間");
+			    setTimeout('countDown()',1000);
+			}*/
+			else{
+			    $("#time").html("しばらくお待ちください");
+			    setTimeout('countDown()',1000);
+			}
+		    }
+
+		});
+
+		},
+		error:function(data){
+		    alert("Access NG");
+		}
+	    });
+	});
+
+    
+    
+</script>
+
+<div id="message"></div>
+<div id="time"></div>
+
+<table border="2">
+<tr><th>行き先</th><th>発車時刻</th></tr>
+<tbody id="table1"></tbody>
+</table>
+
+</body>
+</html>
