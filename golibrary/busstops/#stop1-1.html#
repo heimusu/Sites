@@ -2,17 +2,17 @@
 <html lang="jp">
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+    <title>JR’»ª’¹¾’±Ø’¡Ê1’ÈÖ’¤Î’¤ê’¤Ğ’¡Ë</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <!-- [if it IE 9] -->
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <!-- End If -->
     <link rel="stylesheet" href="stopstyle.css">
-    <title>ç¥æ˜å…¬æ°‘é¤¨ï¼ˆæ±ï¼‰</title>
 </head>
 <body>
-    <h3>ãƒã‚¹åœåï¼šç¥æ˜å…¬æ°‘é¤¨ï¼ˆæ±ï¼‰</h3>
-    <h5>ç¥æ˜å…¬æ°‘é¤¨ï¼ˆæ±ï¼‰ç™ºãƒ»ä¸­å¤®ç·šã®ãƒã‚¹ã®é‹è¡Œæ™‚é–“ã«ã¤ã„ã¦ãŠçŸ¥ã‚‰ã›ã—ã¾ã™</h5>
+    <h3>’¥Ğ’¥¹’Ää’Ì¾’¡§JR’»ª’¹¾’±Ø’¡Ê1’ÈÖ’¤Î’¤ê’¤Ğ’¡Ë</h3>
+    <h5>JR’»ª’¹¾’±Ø’¡Ê1’ÈÖ’¤Î’¤ê’¤Ğ’¡Ë’È¯’¡¦’Ãæ’±û’Àş’¤Î’¥Ğ’¥¹’¤Î’±¿’¹Ô’»ş’´Ö’¤Ë’¤Ä’¤¤’¤Æ’¤ª’ÃÎ’¤é’¤»’¤·’¤Ş’¤¹</h5>
 
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
     <script type="text/javascript">
@@ -47,9 +47,6 @@
 			var flag2 = 0;
 			var flag3 = 0;
 			var flag4 = 0;
-			var flag5 = 0;
-			var flag6 = 0;
-			var flag7 = 0;
 			var tmp;
 			hour2 = DD.getHours();
 			minute2 = DD.getMinutes();
@@ -58,7 +55,7 @@
 			for(var i=0;i<length;i++){
 			    var arraylistlength = data.timetable[i].list.length;
 			    for(var j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid == 43){
+				if(data.timetable[i].list[j].busstopid == 1){
 					/*indicate table*/
 					table = document.getElementById("table1");
 					var row = table.insertRow(-1);
@@ -71,19 +68,14 @@
 			    }
 			}
 			/*debug code*/
-			/*hour2 = 6;
-			minute2 = 0;*/
+			/*hour2 = 16;
+			minute2 = 30;*/
 
 			/*indicate next time*/
-			/*hour2 & minute2 = nowtime, hour1&minute1 = next time*/
-			/*flag1 = 1æ™‚é–“ä»¥å†…ã«ãƒã‚¹ãŒæ¥ã‚‹*/
-			/*flag2 = 0æ™‚é–“res3åˆ†ä»¥å†…ã«ãƒã‚¹ãŒæ¥ã‚‹*/
-			/*flag3 = 1æ™‚é–“or2æ™‚é–“ä»¥å†…ã«ãƒã‚¹ãŒæ¥ã‚‹*/
-			/*flag4 = å½“åˆ†ãƒã‚¹ã¯æ¥ãªã„*/
 			for(i=0;i<length;i++){
 			    arraylistlength=data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid==43){
+				if(data.timetable[i].list[j].busstopid==1){
 				    hour1 = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				    minute1 = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				    comp1 = hour1 - hour2;
@@ -92,20 +84,12 @@
 					res1 = hour1;
 					if(minute2 < minute1 && flag2 == 0){
 					    res3 = minute1;
-					    console.log(res3);
 					    flag2 = 1;
 					}
 				    }
-				    else if(comp1 == 1 || comp1 == 2){
-					if(comp1 == 2 && flag7 == 0){
-					    res2 = hour2 + comp1;
-					}
-					else if(res2 < hour1 && flag7 == 0){
-					    res2 = hour1;
-					    flag7 = 1;
-					}
-					//if(minute2 > minute1 && flag3 == 0){
-					if(flag3 == 0 && res4 < minute1){
+				    else if(comp1 == 1){
+					res2 = hour1++;
+					if(minute2 > minute1 && flag3 == 0){
 					    res4 = minute1;
 					    flag3 = 1;
 					}
@@ -115,28 +99,16 @@
 			    }
 		    }
 		    console.log(flag1,flag2,flag3,flag4);
-		    console.log(res1,res2,res3,res4);
-		    if(flag1 == 1 && flag3 == 0 && res3 > 0|| flag2 == 1 && res3 > 0){
-			$("#message").html("æ¬¡ã®ãƒã‚¹ã¯"+res1+"æ™‚"+res3+"åˆ†ç™ºè»Šã§ã™");
-			flag5 = 1;
-		    }
-		    else if(flag3 == 1 && flag4 == 1 && res2 > 0 && res4 > 0){
-			$("#message").html("æ¬¡ã®ãƒã‚¹ã¯" + res2 + "æ™‚" + res4 + "åˆ†ç™ºè»Šã§ã™");
-			flag6 = 1;
-		    }
-
-		    /*ã“ã®åˆ¤å®šå¿…è¦ï¼Ÿ*/
-		    else if(flag1 == 0 && flag3 ==1 && flag4 == 0){
-			$("#message").html("æ¬¡ã®ãƒã‚¹ã¯" + res2 + "æ™‚" + res4 + "åˆ†ç™ºè»Šã§ã™");
-			flag6 = 1;
+		    if(flag1 == 1 && flag3 == 0 || flag2 == 1){
+			$("#message").html("’¼¡’¤Î’¥Ğ’¥¹’¤Ï"+res1+"’»ş"+res3+"’Ê¬’È¯’¼Ö’¤Ç’¤¹");
+			var flag5 = 1;
 		    }
 		    else if(flag1 == 1  && flag4 == 1 && flag2 == 0){
-			$("#message").html("æ¬¡ã®ãƒã‚¹ã¯" + res2 + "æ™‚" + res4 + "åˆ†ç™ºè»Šã§ã™");
-			    flag6 = 1;
+			$("#message").html("’¼¡’¤Î’¥Ğ’¥¹’¤Ï"+res2+"’»ş"+res4+"’Ê¬’È¯’¼Ö’¤Ç’¤¹");
+			var flag6 = 1
 		    }
-		    //else if(res3 < 0 || flag1 == flag2 == flag3 == flag4 != 1 || flag1 == 1){
-		    else if(res3 < 0 || flag1 == flag2 == flag3 == flag4 != 0 || flag1 == 1){
-			$("#message").html("ãƒã‚¹ã¯ã—ã°ã‚‰ãã“ãªã„ã‚ˆã†ã§ã™");
+		    else if(flag1 == 0){
+			$("#message").html("’¥Ğ’¥¹’¤Ï’¤·’¤Ğ’¤é’¤¯’¤³’¤Ê’¤¤’¤è’¤¦’¤Ç’¤¹");
 		    }
 		   
 		    var lefthour=0;
@@ -153,7 +125,6 @@
 			var nextminute=0;
 			var a_day = 24 * 60 * 60 * 1000;
 			//console.log(nowHour,nowMinute,nexthour,nextminute);
-			console.log(flag5,flag6);
 			if(flag5 == 1){
 			    nextminute = res3;
 			    lefthour = 0;
@@ -162,26 +133,11 @@
 			else if(flag6 == 1){
 			    nexthour = res2;
 			    nextminute = res4;
-			    lefthour = Math.abs(nexthour - nowHour);
-			    //lefthour = nexthour - nowHour;
+			    lefthour = nexthour - nowHour;
 			    if(lefthour == 1){
-				//lefthour = Math.floor((lefthour % a_day)/(60 * 60 * 1000));
-				if(nextminute < nowMinute){
-				    lefthour = 0;
-				    nextminute += 60;
-				}
+				lefthour = Math.floor((lefthour % a_day)/(60 * 60 * 1000));
+				nextminute += 60;
 				leftminute = nextminute - nowMinute;
-			    }
-			    else if(lefthour == 2){
-				if(nowMinute > nextminute){
-				    lefthour = 1;
-				    nextminute += 60;
-				}
-				leftminute = nextminute - nowMinute;
-				if(leftminute == 60){
-				    lefthour = 2;
-				    leftminute = 0;
-				}
 			    }
 			    else if(lefthour == 0){
 				leftminute = nextminute - nowMinute;
@@ -190,17 +146,12 @@
 			else if(flag5 = flag6 = 0){
 			    $("#time").html("");
 			}
-			if(lefthour != 0 || leftminute != 0 && leftminute > 0){
-			    $("#time").html("ç™ºè»Šã¾ã§æ®‹ã‚Š"+ lefthour + "æ™‚é–“" + leftminute + "åˆ†");
+			if(lefthour != 0 || leftminute != 0){
+			    $("#time").html("’È¯’¼Ö’¤Ş’¤Ç’»Ä’¤ê"+ lefthour + "’»ş" + leftminute + "’Ê¬");
 			    setTimeout('countDown()',1000);
 			}
-			/*else if(lefthour == -1 && leftminute == 0){
-			    $("#time").html("ç™ºè»Šã¾ã§æ®‹ã‚Š1æ™‚é–“");
-			    setTimeout('countDown()',1000);
-			}*/
 			else{
-			    $("#time").html("ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„");
-			    setTimeout('countDown()',1000);
+			    $("#time").html("’¤·’¤Ğ’¤é’¤¯’¤ª’ÂÔ’¤Á’¤¯’¤À’¤µ’¤¤");
 			}
 		    }
 
@@ -216,17 +167,17 @@
     
     
 </script>
-
 <form>
     <div id="message"></div>
     <div id="time"></div>
-    <input type=button onClick="location.href='../busstopselect.html'" value="æˆ»ã‚‹" class="btn1">
+    <input type=button onClick="location.href='../busstopselect.html'" value="’Ìá’¤ë" class="btn1">
 </form>
 
 <table border="2">
-<tr><th>è¡Œãå…ˆ</th><th>ç™ºè»Šæ™‚åˆ»</th></tr>
+<tr><th>’¹Ô’¤­’Àè</th><th>’È¯’¼Ö’»ş’¹ï</th></tr>
 <tbody id="table1"></tbody>
 </table>
+
 
 </body>
 </html>

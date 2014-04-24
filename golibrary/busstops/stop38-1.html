@@ -7,40 +7,12 @@
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <!-- End If -->
+    <link rel="stylesheet" href="stopstyle.css">
     <title>ﾘﾊﾋﾞﾘﾃｰｼｮﾝ病院前</title>
 </head>
 <body>
-    <h5>バス停名：ﾘﾊﾋﾞﾘﾃｰｼｮﾝ病院前</h5>
-    <!--
-    <form>
-    <p>
-	<select id="select" name="busstop">
-	    <option value="#"></option>
-	    <option value="stop2-1.html">中央線</option>
-	    <option value="stop2-2.html">鯖江南線</option>
-	    <option value="stop2-3.html">新横江線</option>
-	    <option value="stop2-8.html">豊線</option>
-	    <option value="stop2-9.html">中河・北中山線</option>
-	    <option value="stop2-10.html">河和田線</option>
-	    <option value="stop2-11.html">丹南高校線</option>
-	    <option value="stop2-12.html">歴史の道線</option>
-	</select>
-    </p>
-    <input type=button onClick="top.location.href=busstop.value" value="調べる">
-    </form>
-    -->
-
-    <form>
-	<p>
-	    <select id="select" name="line">
-		<option value="#"></option>
-		<option value="stop2.html">ｱｲｱｲ鯖江（文化の館）（西)</option>
-	    </select>
-	</p>
-	<input type=button onClick="top.location.href=line.value" value="調べる">
-    </form>
-    
-    <h6>ﾘﾊﾋﾞﾘﾃｰｼｮﾝ病院前発・中央線のバスの運行時間についてお知らせします</h6>
+    <h3>バス停名：ﾘﾊﾋﾞﾘﾃｰｼｮﾝ病院前</h3>
+    <h5>ﾘﾊﾋﾞﾘﾃｰｼｮﾝ病院前発・中央線のバスの運行時間についてお知らせします</h5>
 
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
     <script type="text/javascript">
@@ -245,8 +217,11 @@
     
 </script>
 
-<div id="message"></div>
-<div id="time"></div>
+<form>
+    <div id="message"></div>
+    <div id="time"></div>
+    <input type=button onClick="location.href='../busstopselect.html'" value="戻る" class="btn1">
+</form>
 
 <table border="2">
 <tr><th>行き先</th><th>発車時刻</th></tr>
