@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Test</title>
+    <title>heimusu plus</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,37 +18,64 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+	google.load('feeds','1');
+	    function initialize(){
+		var feed = new google.feeds.Feed("http://d.hatena.ne.jp/heimusu/rss");
+		feed.load(function(rss){
+		    if(!rss.error){
+			var channel = new Array();
+			var entry = new Array();
 
+			channel['title']=rss.feed.title;
+			channel['link']=rss.feed.link;
+			for(var i=0; i<rss.feed.entries.length; i++){
+			    entry[i] = {
+				title : rss.feed.entries[i].title,
+			    link : rss.feed.entries[i].link
+			    };
+			}
+			var FeedTitle = '<h3>'
+			+'<a href="' + channel['link'] + '">' + channel['title'] + '</a>'
+			+'</h3>';
+			var FeedContents = '<h4>'
+			+'<a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a>'
+			+'</h4>'
+			+'<h4>'
+			+'<a href="' + entry[1]['link']+'">' + entry[1]['title'] + '</a>'
+			+'</h4>';
+
+			$('#topicsTitle').append(FeedTitle);
+			$('#topicsContents').append(FeedContents);
+		    }
+	    });
+	}
+	google.setOnLoadCallback(initialize);
+    </script>
 </head>
 
 <body>
-    <h1>hello</h1>
-    <!-- top navgation bar -->
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="#">Profile</a></li>
-    <li><a href="#">Messages</a></li>
-</ul>
-<!--    <div class="navbar navbar-fixed-top">
-	<div class-"navbar-inner">
-	    <div class="container">
-		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-		    <span class="icon-bar"></span>
-		    <span class="icon-bar"></span>
-		    <span class="icon-bar"></span>
-		</a>
-		<a class="brand" href="#">Bootstrap</a>
-		<div class="nav-collapse">
-		    <ul class="nav">
-			<li class="active"> <a href="#">top</a> </li>
-			<li> <a href="#">hoge </a> </li>
-			<li> <a href-"#">fuga </a> </li>
-		    </ul>
-		</div>
-	    </div>
-	</div>
+    <div class="hero-unit">
+	<h1>heimusu plus</h1>
+	<p>heimusu plus is heimusu's personal page</p>
     </div>
--->
+    <!-- top navgation bar -->
+    <ul class="nav nav-tabs">
+	<li class="active"><a href="#">Home</a></li>
+	<li><a href="#">about heimusu</a></li>
+	<li><a href="http://d.hatena.ne.jp/heimusu/">blog</a></li>
+	<li><a href="https://twitter.com/heimusu">twitter</a></li>
+	<li><a href="https://github.com/heimusu">github</a></li>
+    </ul>
+
+    <a href="#" class="btn btn-success btn-large">
+	<i class="icon-white icon-ok"></i>
+	実行する
+    </a>
+    <div id="feeds"></div>
+    <div id="topicsTitle"></div>
+    <div id="topicsContents"></div>
+
 </body>
 </html>
 
