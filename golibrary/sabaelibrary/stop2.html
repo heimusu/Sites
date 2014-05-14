@@ -71,8 +71,8 @@
 			    }
 			}
 			/*debug code*/
-			/*hour2 = 6;
-			minute2 = 0;*/
+			hour2 = 16;
+			minute2 = 30;
 
 			/*indicate next time*/
 			/*hour2 & minute2 = nowtime, hour1&minute1 = next time*/
@@ -99,12 +99,12 @@
 				    else if(comp1 == 1 || comp1 == 2){
 					if(comp1 == 2 && flag7 == 0){
 					    res2 = hour2 + comp1;
+					    res3 = minute1;
 					}
 					else if(res2 < hour1 && flag7 == 0){
 					    res2 = hour1;
 					    flag7 = 1;
 					}
-					//if(minute2 > minute1 && flag3 == 0){
 					if(flag3 == 0 && res4 < minute1){
 					    res4 = minute1;
 					    flag3 = 1;

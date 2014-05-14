@@ -8,11 +8,11 @@
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <!-- End If -->
     <link rel="stylesheet" href="stopstyle.css">
-    <title>市民ホールつつじ前（本山前）（南）</title>
+    <title>ｱｲｱｲ鯖江（文化の館）（東）</title>
 </head>
 <body>
-    <h3>バス停名：市民ホールつつじ前（本山前）（南）</h3>
-    <h5>市民ホールつつじ前（本山前）（南）発・中央線・中央線のバスの運行時間についてお知らせします</h5>
+    <h3>バス停名：ｱｲｱｲ鯖江（文化の館）（東）</h3>
+    <h5>ｱｲｱｲ鯖江（文化の館）（東）発・中央線のバスの運行時間についてお知らせします</h5>
 
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
     <script type="text/javascript">
@@ -33,20 +33,16 @@
 			var row_no=1;
 			
 			/*time variable*/
-			//APIから取得した時刻を格納
 			var hour1;
 			var minute1;
-			//現在時刻を格納
 			var hour2;
 			var minute2;
 			var comp1;
-			//結果を格納
 			var res1=0;
 			var res2=0;
 			var res3=0;
 			var res4=0;
 			var DD = new Date();
-			//フラグ変数
 			var flag1 = 0;
 			var flag2 = 0;
 			var flag3 = 0;
@@ -62,7 +58,7 @@
 			for(var i=0;i<length;i++){
 			    var arraylistlength = data.timetable[i].list.length;
 			    for(var j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid == 35){
+				if(data.timetable[i].list[j].busstopid == 20){
 					/*indicate table*/
 					table = document.getElementById("table1");
 					var row = table.insertRow(-1);
@@ -87,7 +83,7 @@
 			for(i=0;i<length;i++){
 			    arraylistlength=data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid==35){
+				if(data.timetable[i].list[j].busstopid==20){
 				    hour1 = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				    minute1 = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				    comp1 = hour1 - hour2;
@@ -226,7 +222,6 @@
     <div id="time"></div>
     <input type=button onClick="location.href='../busstopselect.html'" value="戻る" class="btn1">
 </form>
-
 <table border="2">
 <tr><th>行き先</th><th>発車時刻</th></tr>
 <tbody id="table1"></tbody>
