@@ -51,12 +51,28 @@
 			var flag6 = 0;
 			var flag7 = 0;
 			var tmp;
+			/*busstop time array*/
+			var k = 0;
+			var l = 0;
+			var bustime = new Array();
+			/*nowtime*/
 			hour2 = DD.getHours();
 			minute2 = DD.getMinutes();
 			
+			/*test roop*/
+			/*for(k = 0; k < 20; k++){
+			    bustime[k] = new Array();
+			    for(l = 0; l < 20; l++){
+				bustime[k][l] = k + l;
+				tmp = bustime[k][l];
+				console.log(tmp);
+			    }
+			}*/
+
 			/*main function*/
 			for(var i=0;i<length;i++){
 			    var arraylistlength = data.timetable[i].list.length;
+			    bustime[k] = new Array();
 			    for(var j=0;j<arraylistlength;j++){
 				if(data.timetable[i].list[j].busstopid == 28){
 					/*indicate table*/
@@ -67,12 +83,17 @@
 					cell = row.insertCell(-1);
 					cell.appendChild(document.createTextNode(data.timetable[i].list[j].time));
 					row_no++;
+					bustime[k][l] = data.timetable[i].list[j].time;
+					tmp = bustime[k][l];
+					l++;
+					console.log(tmp);
 				}
 			    }
+			    k++;
 			}
 			/*debug code*/
-			hour2 = 8;
-			minute2 = 55;
+			/*hour2 = 8;
+			minute2 = 55;*/
 
 			/*indicate next time*/
 			/*hour2 & minute2 = nowtime, hour1&minute1 = next time*/
