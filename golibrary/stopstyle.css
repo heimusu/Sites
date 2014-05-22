@@ -20,6 +20,12 @@ h3{
     padding:0em .5em;
 }
 
+h5{
+	x-background:#36D88E;
+	color:white;
+	padding:0em.5em;
+}
+
 form{
     font-size: 120%;
     color: #111;
@@ -46,6 +52,19 @@ h4{
     x-background:#36D88E;
     color:black;
     padding:0em .5em;
+}
+
+table,td,th{
+    border:2px #000000 solid;
+    x-background:#36D88E;
+    float:none;
+    background:white;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-right:10px;
+    margin-left:50px;
+    padding:10px;
+
 }
 
 .btn1{
