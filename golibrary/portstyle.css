@@ -39,9 +39,9 @@ form{
     padding-left:5em;
     padding-right:8em;
     margin: 1em;
-    margin-left:420px;
+    margin-left:400px;
+    margin-right:390px;
     padding-bottom:2em;
-    position:absolute;
 }
 
 
@@ -89,4 +89,30 @@ table,td,th{
     margin-left:480px;
     margin-bottom:-65px;
     padding:0em 10px;
+}
+
+#s_title{
+    margin-bottom:-5px;
+    margin-left:-10px;
+}
+
+
+#search{
+    width: 200px; /* テキストボックスの幅 */
+    background-color: #ffffff; /* テキストボックスの背景色 */
+    font-size:20px;
+    color: #000000;
+    float:left;
+}
+
+.btn2{
+    width:30%;
+    webkit-appearance:none;
+    text-decoration:none;
+    font-weight:bold;
+    text-align:center;
+    font-size:20px;
+    display:block;
+    padding 10px 30px;
+
 }

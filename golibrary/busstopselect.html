@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+    <!-- [if it IE 9] -->
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <!-- End If -->
+    <title>次のバスはいつ？</title>
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <link rel="stylesheet" href="stopstyle.css">
+<head>
+<body>
+    <h1>次のバスはいつ？</h1>
+    <h3>該当のバス停で，次に来るバスを調べます</h3>
+    <form>
+    <p>
+	<h4>乗車するバス停を選んでください(図書館行き）</h4>
+	<select name="busstop">
+	    <option value="#"></option>
+	    <option value="stop.html#1">JR鯖江駅（1番のりば）</option>
+	    <option value="stop.html#32">JR鯖江駅（2番のりば）</option>
+	    <option value="stop.html#2">本町1丁目（東）</option>
+	    <option value="stop.html#3">本町2丁目（東）</option>
+	    <option value="stop.html#33">本町1丁目（西）</option>
+	    <option value="stop.html#34">本町2丁目（西）</option>
+	    <option value="stop.html#4">市民ホールつつじ前（本山前）（北）</option>
+	    <option value="stop.html#35">市民ホールつつじ前（本山前）（南）</option>
+	    <option value="stop.html#5">西鯖江駅前（北）</option>
+	    <option value="stop.html#36">西鯖江駅前（南）</option>
+	    <option value="stop.html#6">サバエシティーホテル前</option>
+	    <option value="stop.html#7">西山公園（西）</option>
+	    <option value="stop.html#37">西山公園（東）</option>
+	    <option value="stop.html#8">市役所（東）</option>
+	    <option value="stop.html#25">市役所（西）</option>
+	    <option value="stop.html#9">鯖江郵便局（北）</option>
+	    <option value="stop.html#38">鯖江郵便局（南）</option>
+	    <option value="stop.html#10">水落町１丁目（西）</option>
+	    <option value="stop.html#39">水落町１丁目（東）</option>
+	    <option value="stop.html#11">北野町１丁目（西）</option>
+	    <option value="stop.html#40">北野町１丁目（東）</option>
+	    <option value="stop.html#12">北野町２丁目（西）</option>
+	    <option value="stop.html#41">北野町２丁目（東）</option>
+	    <option value="stop.html#42">公立丹南病院（１番のりば）</option>
+	    <option value="stop.html#13">公立丹南病院（２番のりば）</option>
+	    <option value="stop.html#14">神明公民館（西）</option>
+	    <option value="stop.html#43">神明公民館（東）</option>
+	    <option value="stop.html#15">ふくしん神明支店前（北）</option>
+	    <option value="stop.html#44">ふくしん神明支店前（南）</option>
+	    <option value="stop.html#16">神明駅</option>
+	    <option value="stop.html#17">神明苑</option>
+	    <option value="stop.html#18">神明苑前（北）</option>
+	    <option value="stop.html#26">神明苑前（南）</option>
+	    <option value="stop.html#19">アルプラザ前（東）</option>
+	    <option value="stop.html#27">アルプラザ前（西）</option>
+	    <option value="stop.html#21">長泉寺（東）</option>
+	    <option value="stop.html#29">長泉寺（西）</option>
+	    <option value="stop.html#22">ﾘﾊﾋﾞﾘﾃｰｼｮﾝ病院前</option>
+	    <option value="stop.html#23">本町４丁目（東）</option>
+	    <option value="stop.html#30">本町４丁目（西）</option>
+	    <option value="stop.html#24">本山前（東）</option>
+	    <option value="stop.html#31">本山前（西）</option>
+
+	</select>
+    </p>
+    <input type="button" value="調べる" onclick="top.location.href=busstop.value" class="btn1">
+    </form>
+        
+    <form>
+    <p>
+	<h4>乗車するバス停を選んでください(図書館帰り）</h4>
+	<select name="busstop">
+	    <option value="#"></option>
+	    <option value="stop.html#20">ｱｲｱｲ鯖江（文化の館）（東）</option>
+	    <option value="stop.html#28">ｱｲｱｲ鯖江（文化の館）（西）</option>
+	</select>
+    </p>
+    <input type=button onClick="top.location.href=busstop.value" value="調べる" class="btn1">
+    </form>
+    
+     <input type=button onClick="top.location.href='top-portal.html'" value="戻る" class="btn2">
+
+
+</body>
+</html>

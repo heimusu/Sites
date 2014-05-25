@@ -77,3 +77,14 @@ table,td,th{
     display:block;
     padding 10px 30px;
 }
+.btn2{
+    width:30%;
+    webkit-appearance:none;
+    text-decoration:none;
+    font-weight:bold;
+    text-align:center;
+    font-size:20px;
+    display:block;
+    padding 10px 30px;
+    margin-left:30px;
+}
