@@ -55,10 +55,12 @@
 </head>
 
 <body>
-    <div class="hero-unit">
-	<h1>heimusu plus</h1>
-	<p>heimusu plus is heimusu's personal page</p>
-    </div>
+    <center>
+	<div class="hero-unit">
+	    <h1>heimusu plus</h1>
+	    <p>heimusu plus is heimusu's personal page</p>
+	</div>
+    </center>
     <!-- top navgation bar -->
     <ul class="nav nav-tabs">
 	<li class="active"><a href="#">Home</a></li>
@@ -68,14 +70,20 @@
 	<li><a href="https://github.com/heimusu">github</a></li>
     </ul>
 
-    <a href="#" class="btn btn-success btn-large">
-	<i class="icon-white icon-ok"></i>
-	実行する
-    </a>
-    <div id="feeds"></div>
-    <div id="topicsTitle"></div>
-    <div id="topicsContents"></div>
-
+    <div class="container">
+	<table class="table">
+	    <thead>
+		<tr>
+		    <th class="col-lg-7" id="topicsTitle"></th>
+		</tr>
+	    </thead>
+	    <tbody>
+		<tr>
+		    <th class="col-lg-5" id="topicsContents"></th>
+		</tr>
+	    </tbody>
+	</table>
+    </div>
 </body>
 </html>
 
