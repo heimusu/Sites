@@ -1,62 +1,88 @@
-<!DOCTYPE HTML>
-<html lang="jp">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<meta charset="utf-8" />
-<title>Heimusu</title>
-<link rel="stylesheet" href="style.css" />
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="jquery-2.1.0.min.js"></script>
-<script type="text/javascript">
-    google.load('feeds','1');
-    function initialize(){
-	var feed = new google.feeds.Feed("http://d.hatena.ne.jp/heimusu/rss");
-	feed.load(function(rss){
-	    if(!rss.error){
-		var channel = new Array();
-		var entry = new Array();
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>heimusu plus</title>
 
-		channel['title']=rss.feed.title;
-		channel['link']=rss.feed.link;
-		for(var i=0; i<rss.feed.entries.length; i++){
-		    entry[i] = {
-			title : rss.feed.entries[i].title,
-			link : rss.feed.entries[i].link
-		    };
-		}
-	var FeedTitle = '<h3>'
-	    +'<a href="' + channel['link'] + '">' + channel['title'] + '</a>'
-	    +'</h3>';
-	var FeedContents = '<h4>'
-	    +'<a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a>'
-	    +'</h4>'
-	    +'<h4>'
-	    +'<a href="' + entry[1]['link']+'">' + entry[1]['title'] + '</a>'
-	    +'</h4>';
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+	google.load('feeds','1');
+	    function initialize(){
+		var feed = new google.feeds.Feed("http://d.hatena.ne.jp/heimusu/rss");
+		feed.load(function(rss){
+		    if(!rss.error){
+			var channel = new Array();
+			var entry = new Array();
 
-	$('#topicsTitle').append(FeedTitle);
-	$('#topicsContents').append(FeedContents);
-		}
-	});
-    }
-    google.setOnLoadCallback(initialize);
-</script>
+			channel['title']=rss.feed.title;
+			channel['link']=rss.feed.link;
+			for(var i=0; i<rss.feed.entries.length; i++){
+			    entry[i] = {
+				title : rss.feed.entries[i].title,
+			    link : rss.feed.entries[i].link
+			    };
+			}
+			var FeedTitle = '<h3>'
+			+'<a href="' + channel['link'] + '">' + channel['title'] + '</a>'
+			+'</h3>';
+			var FeedContents = '<h4>'
+			+'<a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a>'
+			+'</h4>'
+			+'<h4>'
+			+'<a href="' + entry[1]['link']+'">' + entry[1]['title'] + '</a>'
+			+'</h4>';
+
+			$('#topicsTitle').append(FeedTitle);
+			$('#topicsContents').append(FeedContents);
+		    }
+	    });
+	}
+	google.setOnLoadCallback(initialize);
+    </script>
 </head>
+
 <body>
-    <div id="header"></div>
-     <div id="contents">
-	<h1 class = "title">Heimusu</h1>
-	<h1 class = "subscription">Please select contents?</h1>
-    </div>
-    <div id="sidebar">
-	<a href="about.html">about me</a><br>
-	<a href="http://d.hatena.ne.jp/heimusu/">blog</a><br>
-	<a href="https://twitter.com/heimusu">twitter</a><br>
-	<a href="https://github.com/heimusu">github</a>
-    </div>
-    <div id="feeds"></div>
-    <div id="topicsTitle"></div>
-    <div id="topicsContents"></div>
-    <div id="footer">
+    <center>
+	<div class="hero-unit">
+	    <h1>heimusu plus</h1>
+	    <p>heimusu plus is heimusu's personal page</p>
+	</div>
+    </center>
+    <!-- top navgation bar -->
+    <ul class="nav nav-tabs">
+	<li class="active"><a href="#">Home</a></li>
+	<li><a href="about.html">about heimusu</a></li>
+	<li><a href="http://d.hatena.ne.jp/heimusu/">blog</a></li>
+	<li><a href="https://twitter.com/heimusu">twitter</a></li>
+	<li><a href="https://github.com/heimusu">github</a></li>
+    </ul>
+
+    <div class="container">
+	<table class="table">
+	    <thead>
+		<tr>
+		    <th class="col-lg-7" id="topicsTitle"></th>
+		</tr>
+	    </thead>
+	    <tbody>
+		<tr>
+		    <th class="col-lg-5" id="topicsContents"></th>
+		</tr>
+	    </tbody>
+	</table>
     </div>
 </body>
 </html>
