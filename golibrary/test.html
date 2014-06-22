@@ -85,6 +85,7 @@
 			var k = 0;
 			var bustime = new Array();
 			var bin_num = new Array();
+			var hitBinNum = new Array();
 			/*nowtime*/
 			hour2 = DD.getHours();
 			minute2 = DD.getMinutes();
@@ -104,13 +105,22 @@
 					cell.appendChild(document.createTextNode(data.timetable[i].list[j].time));
 					row_no++;
 					bustime[k] = data.timetable[i].list[j].time;
-					bin_num[k] = data.timetable[i].binid;
+					bin_num[k] = Number(data.timetable[i].binid);
 					tmp = bustime[k];
 					k++;
 				}
 			    }
 			}
 			console.log(bin_num);
+			//該当便の時刻表を取得
+			for(i=0;i<length;i++){
+			    for(j=0;j<arraylistlength;j++){
+				if(data.timetable[i].binid == 1){
+				    hitBinNum = data.timetable[i].list[j].time;
+				}
+			    }
+			}
+			console.log(hitBinNum);
 			/*debug code*/
 			/*hour2 = 23;
 			minute2 = 50;*/
