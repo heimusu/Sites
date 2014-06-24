@@ -51,7 +51,7 @@
 		jsonp:'callback',
 		success:function(data){
 		    //alert("ok");
-		    //console.log(data);
+		    console.log(data);
 
 		    $(function(){
 			/*table variable*/
@@ -83,9 +83,10 @@
 			//console.log(hash);
 			/*busstop time array*/
 			var k = 0;
+			var l = 0;
 			var bustime = new Array();
 			var bin_num = new Array();
-			var hitBinNum = new Array();
+			var arriveTime;
 			/*nowtime*/
 			hour2 = DD.getHours();
 			minute2 = DD.getMinutes();
@@ -112,15 +113,7 @@
 			    }
 			}
 			console.log(bin_num);
-			//該当便の時刻表を取得
-			for(i=0;i<length;i++){
-			    for(j=0;j<arraylistlength;j++){
-				if(data.timetable[i].binid == 1){
-				    hitBinNum = data.timetable[i].list[j].time;
-				}
-			    }
-			}
-			console.log(hitBinNum);
+
 			/*debug code*/
 			/*hour2 = 23;
 			minute2 = 50;*/
@@ -202,6 +195,7 @@
 			    flag5 = 1;
 			}
 
+
 			console.log(flag1,flag2,flag3,flag4,flag5,flag6);
 			console.log(res1,res2,res3,res4);
 			/*フラグを基に表示する時刻を判定*/
@@ -220,6 +214,17 @@
 			/*バスがもう無い場合*/
 			else if(res3 < 0 || flag5 == 1){
 			    $("#message").html("バスはしばらくこないようです");
+			}
+			console.log(l);
+			//該当便の時刻表を取得
+			for(i=0;i<length;i++){
+			    arraylistlength = data.timetable[i].list.length;
+			    for(j=0;j<arraylistlength;j++){
+				if(data.timetable[i].binid == bin_num[l] && data.timetable[i].list[j].busstopid == 20){
+				    arriveTime = data.timetable[i].list[j].time;
+				    $('#arrivetime').html(arriveTime + "に図書館に到着します");
+				}
+			    }
 			}
 		   
 			var lefthour=0;
@@ -336,5 +341,8 @@
 <tbody id="table1"></tbody>
 </table>
 
+<form>
+    <div id="arrivetime"></div>
+</form>
 </body>
 </html>
