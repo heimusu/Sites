@@ -115,8 +115,8 @@
 			console.log(bin_num);
 
 			/*debug code*/
-			hour2 = 9;
-			minute2 = 30;
+			/*hour2 = 16;
+			minute2 = 55;*/
 
 			/*indicate next time*/
 			/*hour2 & minute2 = nowtime, hour1&minute1 = next time*/
@@ -239,7 +239,8 @@
 				}
 			    }
 			}
-			//console.log(hitNum);
+			console.log(hitNum);
+			var hitflag = 0;
 			//該当便の時刻表を取得し，図書館にいつ着くのかを調べる
 			for(i=0;i<length;i++){
 			    arraylistlength = data.timetable[i].list.length;
@@ -250,31 +251,41 @@
 				if(data.timetable[i].binid == hitNum && data.timetable[i].list[j].busstopid == 20){
 				    arriveTime = data.timetable[i].list[j].time;
 				    $('#arrivetime').html(arriveTime + "に図書館に到着します");
+				    hitflag = 1;
 				    tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				    tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				    //乗車するバス停の，乗車した便によって図書館へ行かない場合がある
 				    if(res2 > tmpMinute || res1 > tmpHour && res2 < tmpMinute){
 					$('#arrivetime').html("このバスは図書館へは参りません");
+					hitflag = 0;
 				    }
 				    else if(res4 > tmpMinute || res3 > tmpHour && res4 < tmpMinute){
 					$('#arrivetime').html("このバスは図書館へは参りません");
+					hitflag = 0;
 				    }
 				}
 				//図書館のバス停2つ目
 				else if(data.timetable[i].binid == hitNum && data.timetable[i].list[j].busstopid == 28){
 				    arriveTime = data.timetable[i].list[j].time;
 				    $('#arrivetime').html(arriveTime + "に図書館に到着します");
+				    hitflag = 1;
 				    tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				    tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				    //乗車するバス停の，乗車した便によって図書館へ行かない場合がある
 				    if(res2 > tmpMinute || res1 > tmpHour && res2 < tmpMinute){
 					$('#arrivetime').html("このバスは図書館へは参りません");
+					hitflag = 0;
 				    }
 				    else if(res4 > tmpMinute || res3 > tmpHour && res4 < tmpMinute){
 					$('#arrivetime').html("このバスは図書館へは参りません");
+					hitflag = 0;
 				    }
 				}
 			    }
+			}
+
+			if(hitflag == 0){
+			    $('#arrivetime').html("このバスは図書館へは参りません");
 			}
 		   
 			var lefthour=0;
