@@ -31,7 +31,7 @@
 				stopname = data.busstop[n].name;
 			    }
 			}
-			console.log(stopname);
+			//console.log(stopname);
 			$('title').html(stopname);
 			$('#busstopname').html(stopname);
 			$('#indicate').html(stopname + "発・中央線のバスの運行時間についてお知らせします");
@@ -83,8 +83,10 @@
 			//console.log(hash);
 			/*busstop time array*/
 			var k = 0;
+			var l = 0;
 			var bustime = new Array();
 			var bin_num = new Array();
+			var arriveTime;
 			/*nowtime*/
 			hour2 = DD.getHours();
 			minute2 = DD.getMinutes();
@@ -104,16 +106,17 @@
 					cell.appendChild(document.createTextNode(data.timetable[i].list[j].time));
 					row_no++;
 					bustime[k] = data.timetable[i].list[j].time;
-					bin_num[k] = data.timetable[i].binid;
+					bin_num[k] = Number(data.timetable[i].binid);
 					tmp = bustime[k];
 					k++;
 				}
 			    }
 			}
 			console.log(bin_num);
+
 			/*debug code*/
-			/*hour2 = 23;
-			minute2 = 50;*/
+			/*hour2 = 16;
+			minute2 = 55;*/
 
 			/*indicate next time*/
 			/*hour2 & minute2 = nowtime, hour1&minute1 = next time*/
@@ -192,24 +195,97 @@
 			    flag5 = 1;
 			}
 
-			console.log(flag1,flag2,flag3,flag4,flag5,flag6);
-			console.log(res1,res2,res3,res4);
+
+			//console.log(flag1,flag2,flag3,flag4,flag5,flag6);
+			//console.log(res1,res2,res3,res4);
 			/*フラグを基に表示する時刻を判定*/
 			/*次のバスが1時間以内にくる場合*/
 			if(flag1 == 1 && flag3 == 0 || flag2 == 1 && res2 >= 0){
 			    $("#message").html("次のバスは"+res1+"時"+res2+"分発車です");
+			    flag6 = 1;
 			}
 			/*次のバスまで1時間以上ある場合*/
 			else if(flag3 == 1 && res3 >= 0 && res4 >= 0){
 			    $("#message").html("次のバスは" + res3 + "時" + res4 + "分発車です");
+			    flag7 = 1;
 			}
 			/*次のバスまで2時間以上ある場合*/
 			else if(flag4 == 1 && res3 >= 0 && res4 >= 0){
 			    $("#message").html("次のバスは" + res3 + "時" + res4 + "分発車です");
+			    flag7= 1;
 			}
 			/*バスがもう無い場合*/
 			else if(res3 < 0 || flag5 == 1){
 			    $("#message").html("バスはしばらくこないようです");
+			}
+			//console.log(Number(data.timetable[0].list[0].time[0] + data.timetable[0].list[0].time[1]));
+			//乗車したバスの便番号を取得
+			for(i=0;i<length;i++){
+			    arraylistlength = data.timetable[i].list.length;
+			    for(j=0;j<arraylistlength;j++){
+				if(flag6 == 1){
+				    var tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
+				    var tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
+				    if(res1 == tmpHour && res2 == tmpMinute){
+					var hitNum = Number(data.timetable[i].binid);
+				    }
+				}
+				else if(flag7 == 1){
+				    var tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
+				    var tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
+				    if(res3 == tmpHour && res4 == tmpMinute){
+					var hitNum = Number(data.timetable[i].binid);
+				    }
+				}
+			    }
+			}
+			console.log(hitNum);
+			var hitflag = 0;
+			//該当便の時刻表を取得し，図書館にいつ着くのかを調べる
+			for(i=0;i<length;i++){
+			    arraylistlength = data.timetable[i].list.length;
+			    for(j=0;j<arraylistlength;j++){
+				tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
+				tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
+				//図書館のバス停1つ目
+				if(data.timetable[i].binid == hitNum && data.timetable[i].list[j].busstopid == 20){
+				    arriveTime = data.timetable[i].list[j].time;
+				    $('#arrivetime').html(arriveTime + "に図書館に到着します");
+				    hitflag = 1;
+				    tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
+				    tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
+				    //乗車するバス停の，乗車した便によって図書館へ行かない場合がある
+				    if(res2 > tmpMinute || res1 > tmpHour && res2 < tmpMinute){
+					$('#arrivetime').html("このバスは図書館へは参りません");
+					hitflag = 0;
+				    }
+				    else if(res4 > tmpMinute || res3 > tmpHour && res4 < tmpMinute){
+					$('#arrivetime').html("このバスは図書館へは参りません");
+					hitflag = 0;
+				    }
+				}
+				//図書館のバス停2つ目
+				else if(data.timetable[i].binid == hitNum && data.timetable[i].list[j].busstopid == 28){
+				    arriveTime = data.timetable[i].list[j].time;
+				    $('#arrivetime').html(arriveTime + "に図書館に到着します");
+				    hitflag = 1;
+				    tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
+				    tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
+				    //乗車するバス停の，乗車した便によって図書館へ行かない場合がある
+				    if(res2 > tmpMinute || res1 > tmpHour && res2 < tmpMinute){
+					$('#arrivetime').html("このバスは図書館へは参りません");
+					hitflag = 0;
+				    }
+				    else if(res4 > tmpMinute || res3 > tmpHour && res4 < tmpMinute){
+					$('#arrivetime').html("このバスは図書館へは参りません");
+					hitflag = 0;
+				    }
+				}
+			    }
+			}
+
+			if(hitflag == 0){
+			    $('#arrivetime').html("このバスは図書館へは参りません");
 			}
 		   
 			var lefthour=0;
@@ -286,7 +362,7 @@
 				lefthour = 2;
 				leftminute = res2 - minute2;
 			    }
-			    console.log(lefthour,leftminute);
+			    //console.log(lefthour,leftminute);
 			    /*バスが来る場合，残り時間を表示*/
 			    if(lefthour != 0 || leftminute != 0 && leftminute > 0){
 				$("#time").html("発車まで残り"+ lefthour + "時間" + leftminute + "分");
@@ -319,6 +395,10 @@
     <div id="message"></div>
     <div id="time"></div>
     <input type=button onClick="location.href='./busstopselect.html'" value="戻る" class="btn1">
+</form>
+
+<form>
+    <div id="arrivetime"></div>
 </form>
 
 <table border="2">
