@@ -1,0 +1,90 @@
+body{
+    margin:0;
+    color:#00733E;
+	x-color:#61D8A2;
+    x-background:#36D88E;
+    background:#a33;
+    background-image:url(http://sabae-jk.jp/images/bg.jpg);
+}
+
+
+h1{
+    x-background:#36D88E;
+    color:white;
+    padding:0em .5em;
+}
+
+h3{
+    x-background:#36D88E;
+    color:white;
+    padding:0em .5em;
+}
+
+h5{
+	x-background:#36D88E;
+	color:white;
+	padding:0em.5em;
+}
+
+form{
+    font-size: 120%;
+    color: #111;
+    background: white;
+    background: rgba(255, 255, 255, .8);
+    border-radius: 1em;
+    x-border: 3px solid #218457;
+    padding: 1em;
+    margin: 1em;
+    padding-bottom:2em;
+}
+
+
+input{
+    width:10%;
+    x-background:#36D88E;
+    color:black;
+    padding:0em .5em;
+}
+
+
+h4{
+    font-size:80%;
+    x-background:#36D88E;
+    color:black;
+    padding:0em .5em;
+}
+
+table,td,th{
+    border:2px #000000 solid;
+    x-background:#36D88E;
+    float:none;
+    background:white;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-right:10px;
+    margin-left:50px;
+    padding:10px;
+
+}
+
+.btn1{
+    width:30%;
+    webkit-appearance:none;
+    text-decoration:none;
+    font-weight:bold;
+    text-align:center;
+    font-size:20px;
+    display:block;
+    padding 10px 30px;
+}
+.btn2{
+    width:30%;
+    webkit-appearance:none;
+    text-decoration:none;
+    font-weight:bold;
+    text-align:center;
+    font-size:20px;
+    display:block;
+    padding 10px 30px;
+    margin-left:30px;
+}
