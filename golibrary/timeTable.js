@@ -1,38 +1,42 @@
-$(function(){
+window.top.timeTable= function(){
+
+var init = {
+    hour1 : 0,
+	minute1 : 0,
+	hour2 : 0,
+	minute2 : 0,
+	comp1 : 0,
+	res1 : 0,
+    res2 : 0,
+	res3 : 0,
+	res4 : 0,
+	DD : new Date(),
+	flag1 : 0,
+	flag2 : 0,
+	flag3 : 0,
+	flag4 : 0,
+	flag5 : 0,
+	flag6 : 0,
+	flag7 : 0,
+	tmp : 0,
+	hash : location.hash.substring(1)
+	//hash = hash.substring(1);
+}
+
+var timeTable =  function(){
 	$.ajax({
 		url:'http://tutujibus.com/timetableLookup.php?rosenid=1&callback=?',
 		type:'GET',
 		dataType:'jsonp',
 		jsonp:'callback',
 		success:function(data){
-            $(function(){
+            $.extend(this,init);
 			/*table variable*/
 			var length = data.timetable.length;
 			var table;
 			var row_no=1;
 			
 			/*time variable*/
-			var hour1;
-			var minute1;
-			var hour2;
-			var minute2;
-			var comp1;
-			var res1=0;
-			var res2=0;
-			var res3=0;
-			var res4=0;
-			var DD = new Date();
-			var flag1 = 0;
-			var flag2 = 0;
-			var flag3 = 0;
-			var flag4 = 0;
-			var flag5 = 0;
-			var flag6 = 0;
-			var flag7 = 0;
-			var tmp;
-			var hash = location.hash;
-			hash = hash.substring(1);
-			//console.log(hash);
 			/*busstop time array*/
 			var k = 0;
 			var l = 0;
@@ -40,15 +44,15 @@ $(function(){
 			var bin_num = new Array();
 			var arriveTime;
 			/*nowtime*/
-			hour2 = DD.getHours();
-			minute2 = DD.getMinutes();
+			this.hour2 = this.DD.getHours();
+			this.minute2 = this.DD.getMinutes();
 			
 
 			/*main function*/
 			for(var i=0;i<length;i++){
 			    var arraylistlength = data.timetable[i].list.length;
 			    for(var j=0;j<arraylistlength;j++){
-				if(data.timetable[i].list[j].busstopid == hash){
+				if(data.timetable[i].list[j].busstopid == this.hash){
 					/*indicate table*/
 					table = document.getElementById("table1");
 					var row = table.insertRow(-1);
@@ -71,35 +75,35 @@ $(function(){
 
 			/*indicate next time*/
 			/*hour2 & minute2 = nowtime, hour1&minute1 = next time*/
-			starthour = Number(bustime[0][0] + bustime[0][1]);
-			lasthour = Number(bustime[k-1][0] + bustime[k-1][1]);
+			var starthour = Number(bustime[0][0] + bustime[0][1]);
+			var lasthour = Number(bustime[k-1][0] + bustime[k-1][1]);
 			//console.log(starthour,lasthour);
 			for(i=0;i<k;i++){
 			    hour1 = Number(bustime[i][0] + bustime[i][1]);
 			    minute1 = Number(bustime[i][3] + bustime[i][4]);
-			    comp1 = hour1 - hour2;
+			    comp1 = hour1 - this.hour2;
 			    /*始発より早い段階で閲覧した場合*/
-			    if(hour2 < starthour){
+			    if(this.hour2 < starthour){
 				res1 = starthour;
 				res2 = Number(bustime[0][3] + bustime[0][4]);
-				flag1 = 1;
+				this.flag1 = 1;
 			    }
 			    /*終発より後の段階で閲覧した場合*/
-			    else if(hour2 > lasthour){
-				flag5 = 1;
+			    else if(this.hour2 > lasthour){
+				this.flag5 = 1;
 			    }
 			    /*バスが一時間以内にくる場合*/
-			    else if(comp1 == 0 && flag1 == 0 && flag5 == 0){
+			    else if(comp1 == 0 && this.flag1 == 0 && this.flag5 == 0){
 				/*次の時間帯に来る（例：8時現在，次のバスは9時台)場合*/
-				if(minute2 > minute1 && i != k-1 || minute2 == minute1 && i != k-1){
+				if(this.minute2 > this.minute1 && i != k-1 || this.minute2 == this.minute1 && i != k-1){
 				    res1 = Number(bustime[i+1][0] + bustime[i+1][1]);
 				    res2 = Number(bustime[i+1][3] + bustime[i+1][4]);
-				    if(minute2 == minute1){
+				    if(this.minute2 == this.minute1){
 					res3 = res1;
 					res4 = res2;
 					flag3 = 1;
 				    }
-				    else if(minute2 > minute1 && res1 == hour2){
+				    else if(this.minute2 > this.minute1 && res1 == this.hour2){
 					res2 = Number(bustime[i][3] + bustime[i][4]);
 				    }
 				    else{
@@ -151,7 +155,7 @@ $(function(){
 			//console.log(res1,res2,res3,res4);
 			/*フラグを基に表示する時刻を判定*/
 			/*次のバスが1時間以内にくる場合*/
-			if(flag1 == 1 && flag3 == 0 || flag2 == 1 && res2 >= 0){
+			if(flag1 == 1 && this.flag3 == 0 || flag2 == 1 && res2 >= 0){
 			    $("#message").html("次のバスは"+res1+"時"+res2+"分発車です");
 			    flag6 = 1;
 			}
@@ -193,7 +197,7 @@ $(function(){
 				}
 			    }
 			}
-			console.log(hitNum);
+			//console.log(hitNum);
 			var hitflag = 0;
 			//該当便の時刻表を取得し，図書館にいつ着くのかを調べる
 			for(i=0;i<length;i++){
@@ -230,7 +234,7 @@ $(function(){
 					$('#arrivetime').html("このバスは図書館へは参りません");
 					hitflag = 0;
 				    }
-				    else if(res4 > tmpMinute || res3 > tmpHour && res4 < tmpMinute){
+				    else if(this.res4 > tmpMinute || this.res3 > tmpHour && this.res4 < tmpMinute){
 					$('#arrivetime').html("このバスは図書館へは参りません");
 					hitflag = 0;
 				    }
@@ -243,14 +247,16 @@ $(function(){
 			    $('#arrivetime').html("このバスは図書館へは参りません");
 			}
 
-			if(hash == 20 || hash == 28){
+			if(this.hash == 20 || this.hash == 28){
 			    $('#arrivetime').html(" ");
 			}
-            });
         },
 
 		error:function(){
 		    alert("Access NG");
 		}
 	});
-});
+}
+
+timeTable();
+}();
