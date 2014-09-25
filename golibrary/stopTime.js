@@ -1,16 +1,9 @@
 /*残り時間をカウントする*/
-$(function(){
-    $.extend(this,window.top.init);
-    countDown();
-});
-
 function countDown(){
-    $.extend(this,window.top.init);
+    $.extend(this,init);
     var lefthour=0;
 	var leftminute=0;
 	var nowtime = new Date();
-	var nowHour = this.hour2;//nowtime.getHours();
-	var nowMinute = this.minute2;//nowtime.getMinute();;
 	var nexthour=0;
 	var nextminute=0;
 	var a_day = 24 * 60 * 60 * 1000;
