@@ -47,6 +47,10 @@ $(function(){
             /*現在時刻の取得*/
 			this.hour2 = this.DD.getHours();
 			this.minute2 = this.DD.getMinutes();
+            
+            //debug
+            this.hour2 = 8;
+            this.minute2 = 40;
 			
 
 			/*時刻表を出力*/
@@ -167,6 +171,7 @@ $(function(){
 			}
 			//乗車したバスの便番号を取得
 			var checkbin = 0; //取得した発車時刻が他の便の図書館到着と一致するケースがあるため，誤検出を防ぐ
+            //hitNum = 該当した便番号
 			for(i=0;i<length;i++){
 			    arraylistlength = data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
@@ -244,6 +249,11 @@ $(function(){
 			if(this.hash == 20 || this.hash == 28 || this.flag5 == 1){
 			    $('#arrivetime').html(" ");
 			}
+
+            //図書館から帰りのバスを表示させる
+            if(this.hash != 20 && this.hash != 28 && checkbin === 1 && hitNum != null && hitflag != 0){
+                leaveNextBus(data,hitNum);
+            }
             //変数の更新と，次のバスが来るまでの時間を計る関数を呼び出す
             $.extend(init,this);
             countDown();
