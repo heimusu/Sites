@@ -49,7 +49,7 @@ $(function(){
 			this.minute2 = this.DD.getMinutes();
             
             //debug
-            this.hour2 = 8;
+            this.hour2 = 15;
             this.minute2 = 40;
 			
 

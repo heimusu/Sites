@@ -46,9 +46,31 @@ var leaveNextBus =  function(data,busNumber){
     //ただし，18便目のみ欠便（図書館には到着しない）
     //それぞれのバス停に到着するバスの便番号(配列numberWest,Eastに格納)を参照して，処理を書く
     //西側or東側のバス停から○○時○○分に○○行きのバスが発車します．
-    console.log(busNumber);
-    nextBuswest = busstopLibwest[busNumber-1];
-    nextBuseast = busstopLibeast[busNumber-1];
-    console.log(busstopLibwest,busstopLibeast);
+    for(var i=1; i<=19; i++){
+        if(busNumber === numberEast[i]){
+            for(i=0;i<9;i++){
+                if(numberEast[i] === (busNumber+1)){
+                    nextBuseast = busstopLibeast[i];
+                    $("#leaveNextbus").html("東側バス停に"+nextBuseast+"に帰りのバスが来ます");
+                }
+                else if(numberWest[i] === (busNumber+1)){
+                    nextBuswest = busstopLibwest[i];
+                    $("#leaveNextbus").html("西側バス停に"+nextBuswest+"に帰りのバスが来ます");
+                }
+            }
+        }
+        else if(busNumber === numberWest[i]){
+            for(i=0;i<9;i++){
+                if(numberWest[i] === (busNumber+1)){
+                    nextBuswest = busstopLibwest[i];
+                    $("#leaveNextbus").html("西側バス停に"+nextBuswest+"に帰りのバスが来ます");
+                }
+                else if(numberEast[i] === (busNumber+1)){
+                    nextBuseast = busstopLibeast[i];
+                    $("#leaveNextbus").html("東側バス停に"+nextBuseast+"に帰りのバスが来ます");
+                }
+            }
+        }
+    }
     console.log(nextBuswest,nextBuseast);
 };
