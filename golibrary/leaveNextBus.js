@@ -28,7 +28,6 @@ var leaveNextBus =  function(data,busNumber){
 		    }
 	    }
     }
-    console.log(numberWest);
     //図書館東側バス停の時刻一覧を取得
     for(var i=0,k=0;i<length;i++){
         var arraylistlength = data.timetable[i].list.length;
@@ -40,7 +39,6 @@ var leaveNextBus =  function(data,busNumber){
 		    }
 	    }
     }
-    console.log(numberEast);
     //該当する便番号の，次の出発バスを提示する
     //西と東で同時に,for文を使って処理をする（理由：西側と東側の2つのバス停でそれぞれの便番号に対して網羅的に対応しているから)
     //ただし，18便目のみ欠便（図書館には到着しない）
@@ -72,5 +70,4 @@ var leaveNextBus =  function(data,busNumber){
             }
         }
     }
-    console.log(nextBuswest,nextBuseast);
 };

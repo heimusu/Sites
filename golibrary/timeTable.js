@@ -49,8 +49,8 @@ $(function(){
 			this.minute2 = this.DD.getMinutes();
             
             //debug
-            this.hour2 = 15;
-            this.minute2 = 40;
+            this.hour2 = 16;
+            this.minute2 = 0;
 			
 
 			/*時刻表を出力*/
@@ -197,13 +197,17 @@ $(function(){
 			}
 			
             var hitflag = 0;
+            console.log(hitNum);
 			//該当便の時刻表を取得し，図書館にいつ着くのかを調べる
             //便番号の取得状態では，エラーを発生させる可能性がある(未修正)(便番号1,2)
+            //時間をまたぐと正しく動作しない？
+            console.log(this.res1,this.res2,this.res3,this.re4)
 			for(i=0;i<length;i++){
 			    arraylistlength = data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
-				    tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
-				    tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
+                    //時刻表総当り
+				    var tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
+				    var tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				    //図書館のバス停1つ目
 				    if(data.timetable[i].binid == hitNum && data.timetable[i].list[j].busstopid == 20){
 				        arriveTime = data.timetable[i].list[j].time;
@@ -220,14 +224,18 @@ $(function(){
 					        $('#arrivetime').html("このバスは図書館へは参りません");
 					        hitflag = 0;
 				        }
+                        //時間をまたぐ場合の対応を考える
+                        else if(this.res1 === (tmpHour+1) && this.res2 > tmpMinute){
+                            $('#arrivetime').html('hoge');
+                        }
 				    }
 				    //図書館のバス停2つ目
 				    else if(data.timetable[i].binid == hitNum && data.timetable[i].list[j].busstopid == 28){
 				        arriveTime = data.timetable[i].list[j].time;
 				        $('#arrivetime').html(arriveTime + "に図書館に到着します");
 				        hitflag = 1;
-				        tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
-				        tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
+				        var tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
+				        var tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				        //乗車するバス停の，乗車した便によって図書館へ行かない場合がある
 				        if(this.res2 > tmpMinute || this.res1 > tmpHour && this.res2 < tmpMinute){
 					        $('#arrivetime').html("このバスは図書館へは参りません");
@@ -241,10 +249,19 @@ $(function(){
 			    }
 		    }
 
+            tmpHour = Number(arriveTime[0] + arriveTime[1]);
+            tmpMinute = Number(arriveTime[3] + arriveTime[4]);
+            console.log(tmpHour,tmpMinute);
 
 			if(hitflag == 0){
 			    $('#arrivetime').html("このバスは図書館へは参りません");
 			}
+            
+            //時間をまたぐ場合の対応を考える
+            if((this.res1 + 1) === tmpHour && this.res2 > tmpMinute && this.flag5 != 1){
+                $('#arrivetime').html('hoge');
+                hitflag = 1;
+            }
 
 			if(this.hash == 20 || this.hash == 28 || this.flag5 == 1){
 			    $('#arrivetime').html(" ");
