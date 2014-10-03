@@ -49,8 +49,8 @@ $(function(){
 			this.minute2 = this.DD.getMinutes();
             
             //debug
-            this.hour2 = 16;
-            this.minute2 = 0;
+            this.hour2 = 8;
+            this.minute2 = 30;
 			
 
 			/*時刻表を出力*/
@@ -175,7 +175,7 @@ $(function(){
 			for(i=0;i<length;i++){
 			    arraylistlength = data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
-                    //次のバスが1時間以内に来る場合
+                    //次のバスが1時間以内に来る場合 <- 1時間に2本くる場合，先に来る便しか取得できない！
 				    if(this.flag6 == 1){
 				        var tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				        var tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
@@ -183,6 +183,9 @@ $(function(){
 					        var hitNum = Number(data.timetable[i].binid);
 					        checkbin = 1;
 				        }
+                        else if(checkbin === 1){
+                            console.log('hoge');
+                        }
 				    }
                     //次のバスまで1時間以上ある場合
 				    else if(this.flag7 == 1){
@@ -199,9 +202,8 @@ $(function(){
             var hitflag = 0;
             console.log(hitNum);
 			//該当便の時刻表を取得し，図書館にいつ着くのかを調べる
-            //便番号の取得状態では，エラーを発生させる可能性がある(未修正)(便番号1,2)
+            //便番号の取得状態では，エラーを発生させる可能性がある(未修正)(便番号1,2) <- 便番号取得がおかしい
             //時間をまたぐと正しく動作しない？
-            console.log(this.res1,this.res2,this.res3,this.re4)
 			for(i=0;i<length;i++){
 			    arraylistlength = data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
@@ -224,10 +226,6 @@ $(function(){
 					        $('#arrivetime').html("このバスは図書館へは参りません");
 					        hitflag = 0;
 				        }
-                        //時間をまたぐ場合の対応を考える
-                        else if(this.res1 === (tmpHour+1) && this.res2 > tmpMinute){
-                            $('#arrivetime').html('hoge');
-                        }
 				    }
 				    //図書館のバス停2つ目
 				    else if(data.timetable[i].binid == hitNum && data.timetable[i].list[j].busstopid == 28){
@@ -251,15 +249,14 @@ $(function(){
 
             tmpHour = Number(arriveTime[0] + arriveTime[1]);
             tmpMinute = Number(arriveTime[3] + arriveTime[4]);
-            console.log(tmpHour,tmpMinute);
 
 			if(hitflag == 0){
 			    $('#arrivetime').html("このバスは図書館へは参りません");
 			}
             
-            //時間をまたぐ場合の対応を考える
+            //バスが次の時間にくる場合（時間をまたぐ場合）の処理
             if((this.res1 + 1) === tmpHour && this.res2 > tmpMinute && this.flag5 != 1){
-                $('#arrivetime').html('hoge');
+                $('#arrivetime').html(tmpHour + '時' + tmpMinute + '分に図書館に到着します');
                 hitflag = 1;
             }
 
@@ -282,4 +279,3 @@ $(function(){
 		}
 	});
 });
-

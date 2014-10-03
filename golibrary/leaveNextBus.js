@@ -4,7 +4,7 @@
  *   図書館帰りのバスに乗車する場合(= hash == 20 or 28) は表示しない．
  *   また，図書館に到着しないバスに乗っている場合も表示しない
  * 3.次の便の，図書館発のバスを表示(DOMの設定・生成が必要)
- */
+*/
 
 var leaveNextBus =  function(data,busNumber){
     //図書館発バス停の時刻一覧格納配列
@@ -68,6 +68,9 @@ var leaveNextBus =  function(data,busNumber){
                     $("#leaveNextbus").html("東側バス停に"+nextBuseast+"に帰りのバスが来ます");
                 }
             }
+        }
+        else{
+            $("#leaveNextbus").html("次の便は図書館に到着がありません,しばらくお待ち下さい");
         }
     }
 };
