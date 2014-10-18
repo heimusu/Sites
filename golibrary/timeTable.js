@@ -174,6 +174,7 @@ $(function(){
             //hitNum = 該当した便番号
 			for(i=0;i<length;i++){
 			    arraylistlength = data.timetable[i].list.length;
+                var numberBin = Number(data.timetable[i].binid); //1時間に2本バスが来る場合，2本目のバスを検出するためにループ中の便番号を参照する
 			    for(j=0;j<arraylistlength;j++){
                     //次のバスが1時間以内に来る場合 <- 1時間に2本くる場合，先に来る便しか取得できない！
 				    if(this.flag6 == 1){
@@ -183,7 +184,8 @@ $(function(){
 					        var hitNum = Number(data.timetable[i].binid);
 					        checkbin = 1;
 				        }
-                        else if(checkbin === 1){
+                        else if(checkbin === 1 && this.res1 === tmpHour){
+                            console.log(this.res1,this.res2);
                             console.log('hoge');
                         }
 				    }
