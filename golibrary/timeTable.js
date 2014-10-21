@@ -183,8 +183,12 @@ $(function(){
 					        var hitNum = Number(data.timetable[i].binid);
 					        checkbin = 1;
 				        }
-                        else if(checkbin === 1){
-                            console.log('hoge');
+                        //中央線第1便終点到着時刻と第2便JR鯖江駅発車時刻は同時刻に設定されており，正しく判定ができないため独自の判定を持たせる
+                        else if(this.res1 === 8 && this.res2 === 35 && checkbin === 0 && this.hash === '32'){
+                            if(this.hour2 === 8 && this.minute2 > 5){
+                                var hitNum = 2;
+                                checkbin = 1;
+                            }
                         }
 				    }
                     //次のバスまで1時間以上ある場合
