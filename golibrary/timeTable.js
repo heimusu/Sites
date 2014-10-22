@@ -49,8 +49,8 @@ $(function(){
 			this.minute2 = this.DD.getMinutes();
             
             //debug
-            this.hour2 = 8;
-            this.minute2 = 30;
+            this.hour2 = 16;
+            this.minute2 = 50;
 			
 
 			/*時刻表を出力*/
