@@ -206,8 +206,7 @@ $(function(){
             var hitflag = 0;
             console.log(hitNum);
 			//該当便の時刻表を取得し，図書館にいつ着くのかを調べる
-            //便番号の取得状態では，エラーを発生させる可能性がある(未修正)(便番号1,2) <- 便番号取得がおかしい
-            //時間をまたぐと正しく動作しない？
+            //便番号によっては進行方向が逆向きになる場合があるため，便番号によって逆の処理を施して判断させる必要がある
 			for(i=0;i<length;i++){
 			    arraylistlength = data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
