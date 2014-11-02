@@ -44,14 +44,16 @@ var leaveNextBus =  function(data,busNumber){
     //ただし，18便目のみ欠便（図書館には到着しない）
     //それぞれのバス停に到着するバスの便番号(配列numberWest,Eastに格納)を参照して，処理を書く
     //西側or東側のバス停から○○時○○分に○○行きのバスが発車します．
-    for(var i=1; i<=19; i++){
+    busNumber++;
+    //for(var i=1; i<=19; i++){
+    for(var i=0; i<9; i++){
         if(busNumber === numberEast[i]){
             for(i=0;i<9;i++){
-                if(numberEast[i] === (busNumber+1)){
+                if(numberEast[i] === busNumber){
                     nextBuseast = busstopLibeast[i];
                     $("#leaveNextbus").html("東側バス停に"+nextBuseast+"に帰りのバスが来ます");
                 }
-                else if(numberWest[i] === (busNumber+1)){
+                else if(numberWest[i] === busNumber){
                     nextBuswest = busstopLibwest[i];
                     $("#leaveNextbus").html("西側バス停に"+nextBuswest+"に帰りのバスが来ます");
                 }
@@ -59,18 +61,18 @@ var leaveNextBus =  function(data,busNumber){
         }
         else if(busNumber === numberWest[i]){
             for(i=0;i<9;i++){
-                if(numberWest[i] === (busNumber+1)){
+                if(numberWest[i] === busNumber){
                     nextBuswest = busstopLibwest[i];
                     $("#leaveNextbus").html("西側バス停に"+nextBuswest+"に帰りのバスが来ます");
                 }
-                else if(numberEast[i] === (busNumber+1)){
+                else if(numberEast[i] === busNumber){
                     nextBuseast = busstopLibeast[i];
                     $("#leaveNextbus").html("東側バス停に"+nextBuseast+"に帰りのバスが来ます");
                 }
             }
         }
         else{
-            $("#leaveNextbus").html("次の便は図書館に到着がありません,しばらくお待ち下さい.反対側のバス停から，図書館行きのバスが出ているかもしれません.");
+            $("#leaveNextbus").html("次の便は図書館に到着がありません,しばらくお待ち下さい.");
         }
     }
 };

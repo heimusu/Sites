@@ -17,6 +17,7 @@ init = {
 	flag5 : 0,
 	flag6 : 0,
 	flag7 : 0,
+    shinmeiFlag : 0,
 	tmp : 0,
 	hash : location.hash.substring(1)
 };
@@ -47,12 +48,19 @@ $(function(){
             /*現在時刻の取得*/
 			this.hour2 = this.DD.getHours();
 			this.minute2 = this.DD.getMinutes();
-            
+           
+            /*
             //debug
             this.hour2 = 16;
-            this.minute2 = 50;
-			
+            this.minute2 = 45;
+			*/
 
+            //神明駅の独自対応（行き先によって出力させる時刻表を変化させる)
+            var dest;
+            if(this.hash === '16'){
+                console.log('hoge');
+                shinmeiFlag = 1;
+            }
 			/*時刻表を出力*/
 			for(var i=0;i<length;i++){
 			    var arraylistlength = data.timetable[i].list.length;
@@ -184,8 +192,14 @@ $(function(){
 					        checkbin = 1;
 				        }
                         //中央線第1便終点到着時刻と第2便JR鯖江駅発車時刻は同時刻に設定されており，正しく判定ができないため独自の判定を持たせる
-                        else if(this.res1 === 8 && this.res2 === 35 && checkbin === 0 && this.hash === '32'){
-                            if(this.hour2 === 8 && this.minute2 > 5){
+                        else if(this.res1 === 8 && this.res2 === 35 && checkbin === 0 && this.hash === '32' || 
+                                this.res1 === 8 && this.res2 === 35 && checkbin === 0 && this.hash === '1'){
+                            if(this.hour2 === 8 && this.minute2 > 5 && this.hash === '32'){
+                                var hitNum = 2;
+                                checkbin = 1;
+                            }
+                            //1便の場合の接続を考慮
+                            else if(this.hour2 === 8 && this.hash === '1'){
                                 var hitNum = 2;
                                 checkbin = 1;
                             }
@@ -202,6 +216,14 @@ $(function(){
 				    }
 			    }
 			}
+
+            //第4便神明苑発バスと第5便JR鯖江駅発バスの対応
+            if(this.res1 === 9 && this.res2 === 45 && checkbin === 1 && this.hash === '32'){
+                if(this.hour2 === 8 && this.minute2 >= 35 || this. hour2 === 9 && this.minute2 < 45){
+                    var hitNum = 5;
+                    checkbin = 1;
+                }
+            }
 			
             var hitflag = 0;
             console.log(hitNum);
@@ -210,7 +232,7 @@ $(function(){
 			for(i=0;i<length;i++){
 			    arraylistlength = data.timetable[i].list.length;
 			    for(j=0;j<arraylistlength;j++){
-                    //時刻表総当り
+                    //時刻表総当りで到着時刻を探していく
 				    var tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				    var tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				    //図書館のバス停1つ目
@@ -221,15 +243,15 @@ $(function(){
 				        tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				        tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				        //乗車するバス停の，乗車した便によって図書館へ行かない場合がある
-				        if(this.res2 > tmpMinute || this.res1 > tmpHour && this.res2 < tmpMinute){
+				        if(this.res2 > tmpMinute  && this.flag6 === 1 || this.res1 > tmpHour && this.res2 < tmpMinute && this.flag6 === 1){
 					        $('#arrivetime').html("このバスは図書館へは参りません");
 					        hitflag = 0;
 				        }
-				        else if(this.res4 > tmpMinute || this.res3 > tmpHour && this.res4 < tmpMinute){
+				        else if(this.res4 > tmpMinute && this.flag7 === 1 || this.res3 > tmpHour && this.res4 < tmpMinute && this.flag7 === 1){
 					        $('#arrivetime').html("このバスは図書館へは参りません");
 					        hitflag = 0;
 				        }
-				    }
+                    }
 				    //図書館のバス停2つ目
 				    else if(data.timetable[i].binid == hitNum && data.timetable[i].list[j].busstopid == 28){
 				        arriveTime = data.timetable[i].list[j].time;
@@ -238,11 +260,11 @@ $(function(){
 				        var tmpHour = Number(data.timetable[i].list[j].time[0] + data.timetable[i].list[j].time[1]);
 				        var tmpMinute = Number(data.timetable[i].list[j].time[3] + data.timetable[i].list[j].time[4]);
 				        //乗車するバス停の，乗車した便によって図書館へ行かない場合がある
-				        if(this.res2 > tmpMinute || this.res1 > tmpHour && this.res2 < tmpMinute){
+				        if(this.res2 > tmpMinute && this.flag6 === 1|| this.res1 > tmpHour && this.res2 < tmpMinute && this.flag6 === 1){
 					        $('#arrivetime').html("このバスは図書館へは参りません");
 					        hitflag = 0;
 				        }
-				        else if(this.res4 > tmpMinute || this.res3 > tmpHour && this.res4 < tmpMinute){
+				        else if(this.res4 > tmpMinute && this.flag7 === 1|| this.res3 > tmpHour && this.res4 < tmpMinute && this.flag7 === 1){
 					        $('#arrivetime').html("このバスは図書館へは参りません");
 					        hitflag = 0;
 				        }
@@ -252,6 +274,16 @@ $(function(){
 
             tmpHour = Number(arriveTime[0] + arriveTime[1]);
             tmpMinute = Number(arriveTime[3] + arriveTime[4]);
+
+            if(hitNum === 4 || hitNum === 7){
+			    if(this.res2 < tmpMinute || this.res1 < tmpHour && this.res2 > tmpMinute){
+					hitflag = 0;
+				}
+				else if(this.res4 < tmpMinute || this.res3 < tmpHour && this.res4 > tmpMinute){
+					hitflag = 0;
+				}
+            }
+
 
 			if(hitflag == 0){
 			    $('#arrivetime').html("このバスは図書館へは参りません");
