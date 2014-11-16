@@ -17,7 +17,6 @@ init = {
 	flag5 : 0,
 	flag6 : 0,
 	flag7 : 0,
-    shinmeiFlag : 0,
 	tmp : 0,
 	hash : location.hash.substring(1)
 };
@@ -56,11 +55,10 @@ $(function(){
 			*/
 
             //神明駅の独自対応（行き先によって出力させる時刻表を変化させる)
-            var dest;
             if(this.hash === '16'){
-                console.log('hoge');
-                shinmeiFlag = 1;
+                shinmeiSwitch();
             }
+
 			/*時刻表を出力*/
 			for(var i=0;i<length;i++){
 			    var arraylistlength = data.timetable[i].list.length;
@@ -81,6 +79,7 @@ $(function(){
 				    }
 			    }
 			}
+
 
 			/*次のバスの発車時刻を表示*/
 			/*hour2 & minute2 = 現在時刻, hour1&minute1 = 次のバスの発車時刻*/
