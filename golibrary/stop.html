@@ -12,11 +12,13 @@
 </head>
 <body>
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="jquery.tmpl.js"></script>
     <script type="text/javascript" src="busstopName.js"></script>
     <script type="text/javascript" src="timeTable.js"></script>
     <script type="text/javascript" src="stopTime.js"></script> 
     <script type="text/javascript" src="leaveNextBus.js"></script>
     <script type="text/javascript" src="shinmeiSwitch.js"></script>
+    <script type="text/javascript" src="purl.js"></script>
     
     <h3 id="busstopname">busstop_name</h3>
     <h5 id="indicate">indicate</h5>
@@ -28,6 +30,21 @@
     </form>
 
     <!-- 神明駅の行き先を設定するセレクトボックス -->
+    <script>
+        if(location.hash.substring(1) === '16'){
+            alert('hoge');
+        }
+        var url = $.url(); 
+        console.log(url);
+        /*
+        var hash = location.hash;
+        hash = hash.substring(1);
+        console.log(hash);
+        */
+        console.log(url.param());
+       // console.log(url.attr('fragment'));
+        //console.log(location.search);
+    </script>
     <div id="shinmeiSwitch"></div>
 
     <!-- 図書館への到着時刻を表示 -->

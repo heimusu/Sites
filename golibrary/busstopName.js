@@ -9,8 +9,12 @@ $( function(){
 		    $(function(){
 			var length = data.busstop.length;
 			var n;
+            var url = $.url();
+            /*
 			var hash = location.hash;
 			hash = hash.substring(1);
+            */
+            var hash = url.fparam('dest');
 			for(n=0;n<length;n++){
 			    if(data.busstop[n].id == hash){
 				stopname = data.busstop[n].name;

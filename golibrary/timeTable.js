@@ -18,7 +18,8 @@ init = {
 	flag6 : 0,
 	flag7 : 0,
 	tmp : 0,
-	hash : location.hash.substring(1)
+    hash : 0
+	//hash : location.hash.substring(1)
 };
 
 
@@ -32,6 +33,9 @@ $(function(){
 		jsonp:'callback',
 		success:function(data){
             $.extend(this,init);
+            var parseUrl = $.url();
+            this.hash = parseUrl.fparam('dest');
+            $.extend(init,this);
 			/*時刻表描画用変数*/
 			var length = data.timetable.length;
 			var table;
@@ -48,11 +52,11 @@ $(function(){
 			this.hour2 = this.DD.getHours();
 			this.minute2 = this.DD.getMinutes();
            
-            /*
+            
             //debug
-            this.hour2 = 16;
-            this.minute2 = 45;
-			*/
+            this.hour2 = 8;
+            this.minute2 = 0;
+			
 
             //神明駅の独自対応（行き先によって出力させる時刻表を変化させる)
             if(this.hash === '16'){
@@ -79,7 +83,6 @@ $(function(){
 				    }
 			    }
 			}
-
 
 			/*次のバスの発車時刻を表示*/
 			/*hour2 & minute2 = 現在時刻, hour1&minute1 = 次のバスの発車時刻*/
