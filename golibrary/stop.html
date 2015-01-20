@@ -28,23 +28,6 @@
         <div id="time"></div>
         <input type=button onClick="location.href='./busstopselect.html'" value="戻る" class="btn1">
     </form>
-
-    <!-- 神明駅の行き先を設定するセレクトボックス -->
-    <script>
-        if(location.hash.substring(1) === '16'){
-            alert('hoge');
-        }
-        var url = $.url(); 
-        console.log(url);
-        /*
-        var hash = location.hash;
-        hash = hash.substring(1);
-        console.log(hash);
-        */
-        console.log(url.param());
-       // console.log(url.attr('fragment'));
-        //console.log(location.search);
-    </script>
     <div id="shinmeiSwitch"></div>
 
     <!-- 図書館への到着時刻を表示 -->

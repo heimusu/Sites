@@ -33,10 +33,17 @@ $(function(){
 		jsonp:'callback',
 		success:function(data){
             $.extend(this,init);
+            /*バス停の番号を取得*/
             var parseUrl = $.url();
             this.hash = parseUrl.fparam('dest');
             $.extend(init,this);
-			/*時刻表描画用変数*/
+
+            /*神明駅の場合は特殊なパラメータを付与する*/
+            var shinmeiDest = parseUrl.fparam('flag');
+            console.log(shinmeiDest);
+			
+            
+            /*時刻表描画用変数*/
 			var length = data.timetable.length;
 			var table;
 			var row_no=1;
@@ -59,30 +66,63 @@ $(function(){
 			
 
             //神明駅の独自対応（行き先によって出力させる時刻表を変化させる)
-            if(this.hash === '16'){
+            if(this.hash === '16' && shinmeiDest != undefined){
                 shinmeiSwitch();
+                if(shinmeiDest === '1'){
+                    shinmeiDest = '神明駅';
+                }
+                else if(shinmeiDest === '2'){
+                    shinmeiDest = '神明苑';
+                }
+                else if(shinmeiDest === '3'){
+                    shinmeiDest = 'JR鯖江駅';
+                }
             }
 
 			/*時刻表を出力*/
-			for(var i=0;i<length;i++){
-			    var arraylistlength = data.timetable[i].list.length;
-			    for(var j=0;j<arraylistlength;j++){
-				    if(data.timetable[i].list[j].busstopid == this.hash){
-					    /*indicate table*/
-					    table = document.getElementById("table1");
-					    var row = table.insertRow(-1);
-					    var cell = row.insertCell(-1);
-					    cell.appendChild(document.createTextNode(data.timetable[i].destination));
-					    cell = row.insertCell(-1);
-					    cell.appendChild(document.createTextNode(data.timetable[i].list[j].time));
-					    row_no++;
-					    bustime[k] = data.timetable[i].list[j].time;
-					    bin_num[k] = Number(data.timetable[i].binid);
-					    tmp = bustime[k];
-					    k++;
-				    }
+            if(shinmeiDest === undefined){
+			    for(var i=0;i<length;i++){
+			        var arraylistlength = data.timetable[i].list.length;
+			        for(var j=0;j<arraylistlength;j++){
+				        if(data.timetable[i].list[j].busstopid == this.hash){
+					        /*indicate table*/
+					        table = document.getElementById("table1");
+					        var row = table.insertRow(-1);
+					        var cell = row.insertCell(-1);
+					        cell.appendChild(document.createTextNode(data.timetable[i].destination));
+					        cell = row.insertCell(-1);
+					        cell.appendChild(document.createTextNode(data.timetable[i].list[j].time));
+					        row_no++;
+					        bustime[k] = data.timetable[i].list[j].time;
+					        bin_num[k] = Number(data.timetable[i].binid);
+					        tmp = bustime[k];
+					        k++;
+				        }
+			        }
 			    }
-			}
+            }
+
+            else if(shinmeiDest != undefined){
+			    for(var i=0;i<length;i++){
+			        var arraylistlength = data.timetable[i].list.length;
+			        for(var j=0;j<arraylistlength;j++){
+				        if(data.timetable[i].list[j].busstopid == this.hash && data.timetable[i].destination === shinmeiDest){
+					        /*indicate table*/
+					        table = document.getElementById("table1");
+					        var row = table.insertRow(-1);
+					        var cell = row.insertCell(-1);
+					        cell.appendChild(document.createTextNode(data.timetable[i].destination));
+					        cell = row.insertCell(-1);
+					        cell.appendChild(document.createTextNode(data.timetable[i].list[j].time));
+					        row_no++;
+					        bustime[k] = data.timetable[i].list[j].time;
+					        bin_num[k] = Number(data.timetable[i].binid);
+					        tmp = bustime[k];
+					        k++;
+				        }
+			        }
+			    }
+            }
 
 			/*次のバスの発車時刻を表示*/
 			/*hour2 & minute2 = 現在時刻, hour1&minute1 = 次のバスの発車時刻*/
