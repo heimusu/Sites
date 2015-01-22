@@ -59,11 +59,11 @@ $(function(){
 			this.hour2 = this.DD.getHours();
 			this.minute2 = this.DD.getMinutes();
            
-            
+            /*
             //debug
-            this.hour2 = 8;
-            this.minute2 = 0;
-			
+            this.hour2 = $.url().fparam('hour');
+            this.minute2 = $.url().fparam('minute');;
+			*/
 
             //神明駅の独自対応（行き先によって出力させる時刻表を変化させる)
             if(this.hash === '16' && shinmeiDest != undefined){
