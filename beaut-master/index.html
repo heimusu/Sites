@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="indexMod">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>api</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+    <script src="controller.js"></script>
+  </head>
+  <body ng-controller="indexController">
+    <button ng-click="test()">getData</button>
+
+    <dl>
+      <dt>ID</dt>
+      <dd>{{ result.id }}</dd>
+      <dt>店舗名</dt>
+      <dd>{{ result.store.name }}</dd>
+    </dl>
+  </body>
+</html>
