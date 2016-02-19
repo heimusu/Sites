@@ -14,8 +14,10 @@ angular.module('indexMod', [])
       });
     };
     */
+    //本物のURLから取得できるようにすること
     $http.get('./dummy.json'
     ).success(function(data){
+      console.log(data);
       $scope.result = data;
     })
     .error(function(data,status,headers,config){

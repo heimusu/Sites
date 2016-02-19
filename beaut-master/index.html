@@ -3,7 +3,7 @@
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
-    <title>api</title>
+    <title>beaut-master</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
     <script src="controller.js"></script>
   </head>
@@ -12,9 +12,14 @@
     <!-- <button ng-click="test()">getData</button> -->
     <dl>
       <dt>ID</dt>
-      <dd>{{result.id}}</dd>
+        <dd>{{result.id}}</dd>
       <dt>店舗名</dt>
-      <dd>{{result.store.name}}</dd>
+        <dd>{{result.store.name}}</dd>
+      <dt>店舗住所</dt>
+        <dd>{{result.zipcode}} {{result.store.address1}} {{result.store.address2}} {{result.store.address3}}</dd>
+        <dd>電話番号:{{result.store.tel}}</dd>
+      <dt>アクセス方法</dt>
+        <dd>{{result.store.direction}}</dd>
     </dl>
   </body>
 </html>
