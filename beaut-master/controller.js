@@ -81,7 +81,7 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
             //console.log(data);
             $scope.storeData = data;
             console.log($scope.storeData[$scope.index]);
-            $scope.result = $scope.storeData[$scope.index];s
+            $scope.result = $scope.storeData[$scope.index];
 
         })
         .error(function(data,status,headers,config){
