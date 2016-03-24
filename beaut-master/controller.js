@@ -8,7 +8,16 @@ module.config(['$httpProvider',function ($httpProvider) {
 }
 ]);
 */
-module.controller('indexController', ['$scope', '$http', function($scope, $http){
+
+module.config(['$locationProvider', function($locationProvider) {
+	$locationProvider.html5Mode({
+		enabled: true,
+  		requireBase: false
+	});
+}]);
+
+
+module.controller('indexController', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location){
 
     //ボタン押下でデータ取得
     /*
@@ -24,6 +33,7 @@ module.controller('indexController', ['$scope', '$http', function($scope, $http)
     };
     */
     //現在はモックサーバーから取得している
+    /*
     $http({
         method:'GET',
         url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores/4ccd36cb027342adaa2db2ba1e3af079'
@@ -32,7 +42,7 @@ module.controller('indexController', ['$scope', '$http', function($scope, $http)
         //headers:{'X-Beaut-Session-Id':'b902846b9cb04e7785808ecd8582b7d1','X-Beaut-Client-Type':'ios-0.1.0'}
     })
     .success(function(data, status, headers, config){
-        console.log(data);
+        //console.log(data);
         $scope.result = data;
         //駐車場有無判定用変数
         $scope.parking = $scope.result.parking;
@@ -40,7 +50,7 @@ module.controller('indexController', ['$scope', '$http', function($scope, $http)
     .error(function(data,status,headers,config){
       console.log('error');
     });
-
+    */
     $http({
         method:'GET',
         url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
@@ -48,18 +58,36 @@ module.controller('indexController', ['$scope', '$http', function($scope, $http)
     .success(function(data, status, headers, config){
         //console.log(data);
         $scope.storeData = data;
+        console.log($scope.storeData);
     })
     .error(function(data,status,headers,config){
       console.log('error');
     });
 
     $scope.changeShop = function(index){
-        //$scope.result = $scope.storeData[index];
-        console.log($scope.result);
-        //console.log(angular.equals($scope.result, $scope.storeData[index]));
-        //componentHandler.upgradeDom();
-        //$scope.parking = $scope.result.store.parking;
+        $window.location.href = 'index.html?shop=' + index;
     };
+
+    var paramName = "shop";
+    var param = $location.search()[paramName];
+    $scope.index = param;
+
+    if($scope.index != undefined){
+        $http({
+            method:'GET',
+            url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
+        })
+        .success(function(data, status, headers, config){
+            //console.log(data);
+            $scope.storeData = data;
+            console.log($scope.storeData[$scope.index]);
+            $scope.result = $scope.storeData[$scope.index];
+
+        })
+        .error(function(data,status,headers,config){
+          console.log('error');
+        });
+    }
 
     //タブ切り替え
     $scope.tabShop = true;

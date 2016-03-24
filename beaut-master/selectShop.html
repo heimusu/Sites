@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="indexMod">
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>beaut-master</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+    <script src="controller.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.4/angular-material.min.js"></script>
+
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+
+<body ng-controller="indexController">
+    <div class="topBar">
+        <h1>店舗選択ページ</h1>
+    </div>
+
+
+    <div class="mdl-list mdl-grid">
+        <div class="mdl-list__item mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp" ng-repeat="s in storeData" ng-click="changeShop($index)">
+            <div class="mdl-card_title">
+                <h2 class="mdl-card__title-text">{{s.name}}</h2>
+            </div>
+            <div class="mdl-card__subtitle-text">
+                <h5 style="float:left;">{{s.note}}</h5>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
