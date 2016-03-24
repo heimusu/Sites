@@ -105,4 +105,15 @@ module.controller('indexController', ['$scope', '$http', function($scope, $http)
         }
     };
 
+    $scope.showInformation = 0;
+    $scope.showMenuNumber = 0;
+    $scope.showStaffNumber = 0;
+    $scope.showMenu = function(index){
+        $scope.showMenuNumber = index;
+    };
+    $scope.showStaff = function(index){
+        $scope.showStaffNumber = index;
+    };
+
+
 }]);
