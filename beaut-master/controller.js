@@ -54,12 +54,13 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
     $http({
         method:'GET',
         //本番API
-        //url:'http://api.beaut.asia/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
+        url:'http://api.beaut.asia/v1/stores',
         //モックサーバー
-        url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
+        //url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
     })
     .success(function(data, status, headers, config){
         //console.log(data);
+        console.log(status);
         $scope.storeData = data;
         console.log($scope.storeData);
     })
@@ -78,10 +79,14 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
     if($scope.index != undefined){
         $http({
             method:'GET',
-            url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
+            //本番API
+            url:'http://api.beaut.asia/v1/stores',
+            //モックサーバー
+            //url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
         })
         .success(function(data, status, headers, config){
             //console.log(data);
+            console.log(status);
             $scope.storeData = data;
             console.log($scope.storeData[$scope.index]);
             $scope.result = $scope.storeData[$scope.index];
