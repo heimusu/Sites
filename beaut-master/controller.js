@@ -1,13 +1,4 @@
 module = angular.module('indexMod', []);
-/*
-//クロスドメイン対策・認証用
-module.config(['$httpProvider',function ($httpProvider) {
-    //$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;application/json;charset=utf-8';
-    //$httpProvider.defaults.headers.common['X-Beaut-Session-Id'] = 'b902846b9cb04e7785808ecd8582b7d1';
-    //$httpProvider.defaults.headers.common['X-Beaut-Client-Type'] = 'ios-0.1.0';
-}
-]);
-*/
 
 module.config(['$locationProvider', function($locationProvider) {
 	$locationProvider.html5Mode({
@@ -18,51 +9,15 @@ module.config(['$locationProvider', function($locationProvider) {
 
 
 module.controller('indexController', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location){
-
-    //ボタン押下でデータ取得
-    /*
-    $scope.test = function(){
-      //$http.get('http://127.0.0.1:3000/dummy.json'
-      $http.get('./dummy.json'
-      ).success(function(data){
-        $scope.result = data;
-      })
-      .error(function(data,status,headers,config){
-        console.log(error);
-      });
-    };
-    */
-    //現在はモックサーバーから取得している
-    /*
-    $http({
-        method:'GET',
-        url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores/4ccd36cb027342adaa2db2ba1e3af079'
-        //url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/posts/4ccd36cb027342adaa2db2ba1e3af079'
-        //url:'http://api.beaut.asia/v1/posts/4ccd36cb027342adaa2db2ba1e3af079',
-        //headers:{'X-Beaut-Session-Id':'b902846b9cb04e7785808ecd8582b7d1','X-Beaut-Client-Type':'ios-0.1.0'}
-    })
-    .success(function(data, status, headers, config){
-        //console.log(data);
-        $scope.result = data;
-        //駐車場有無判定用変数
-        $scope.parking = $scope.result.parking;
-    })
-    .error(function(data,status,headers,config){
-      console.log('error');
-    });
-    */
     $http({
         method:'GET',
         //本番API
-        url:'http://api.beaut.asia/v1/stores',
+        //url:'http://api.beaut.asia/v1/stores',
         //モックサーバー
-        //url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
+        url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
     })
     .success(function(data, status, headers, config){
-        //console.log(data);
-        console.log(status);
         $scope.storeData = data;
-        console.log($scope.storeData);
     })
     .error(function(data,status,headers,config){
       console.log('error');
@@ -80,15 +35,12 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         $http({
             method:'GET',
             //本番API
-            url:'http://api.beaut.asia/v1/stores',
+            //url:'http://api.beaut.asia/v1/stores',
             //モックサーバー
-            //url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
+            url:'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
         })
         .success(function(data, status, headers, config){
-            //console.log(data);
-            console.log(status);
             $scope.storeData = data;
-            console.log($scope.storeData[$scope.index]);
             $scope.result = $scope.storeData[$scope.index];
 
         })
@@ -150,6 +102,74 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
     $scope.showStaff = function(index){
         $scope.showStaffNumber = index;
     };
+
+	$scope.renewDataButton = function(){
+		//店舗idに向けてpostを投げれば良いはず…
+		//店舗id
+		//console.log($scope.result.id);
+		/*
+		//店舗情報
+		console.log($scope.result.name);
+		console.log($scope.result.zipcode);
+		console.log($scope.result.address1);
+		console.log($scope.result.address2);
+		console.log($scope.result.address3);
+		console.log($scope.result.tel);
+		console.log($scope.result.hours);
+		console.log($scope.result.hoursNote);
+		console.log($scope.result.route);
+		console.log($scope.result.direction);
+		console.log($scope.result.siteUrl);
+		console.log($scope.result.seatCount);
+		console.log($scope.result.staffCount);
+		console.log($scope.result.parkingCount);
+		console.log($scope.result.jobOffer);
+		*/
+		/*
+		//メニュー情報
+		for(var i = 0; i < $scope.result.menuData.length; i++){
+			console.log($scope.result.menuData[i].name);
+			console.log($scope.result.menuData[i].description);
+			console.log($scope.result.menuData[i].price);
+			console.log($scope.result.menuData[i].contentUri);
+		}
+		*/
+
+		/*
+		//スタッフ情報
+		for(var j = 0; j < $scope.result.staffData.length; j++){
+			console.log($scope.result.staffData[j].id);
+			console.log($scope.result.staffData[j].name);
+			console.log($scope.result.staffData[j].description);
+			console.log($scope.result.staffData[j].contentUri);
+			console.log($scope.result.staffData[j].following);
+			console.log($scope.result.staffData[j].followersCount);
+			console.log($scope.result.staffData[j].postsCount);
+			console.log($scope.result.staffData[j].likesCount);
+		}
+		*/
+
+		//その他情報
+		console.log($scope.result.categoryId);
+		console.log($scope.result.areaId);
+		console.log($scope.result.prefectureId);
+		console.log($scope.result.holidays);
+		console.log($scope.result.creditcard);
+		console.log($scope.result.creditcardBrands);
+		console.log($scope.result.blogUrl);
+		console.log($scope.result.goodNote);
+		console.log($scope.result.note);
+		//ギャラリーデータ等，画像周りはPOSTできるようにすること
+		console.log($scope.result.galleryData);
+		console.log($scope.result.directionData);
+		console.log($scope.result.following);
+		console.log($scope.result.followersCount);
+		console.log($scope.result.postsCount);
+		console.log($scope.result.likesCount);
+
+		//送信して更新
+		//$window.location.reload();
+	};
 
 
 }]);
