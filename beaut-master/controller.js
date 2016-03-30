@@ -1,4 +1,4 @@
-module = angular.module('indexMod', []);
+module = angular.module('indexMod', ['ngFileUpload']);
 
 module.config(['$locationProvider', function($locationProvider) {
 	$locationProvider.html5Mode({
@@ -8,7 +8,7 @@ module.config(['$locationProvider', function($locationProvider) {
 }]);
 
 
-module.controller('indexController', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location){
+module.controller('indexController', ['$scope', '$http', '$window', '$location', 'Upload', function($scope, $http, $window, $location, Upload){
     $http({
         method:'GET',
         //本番API
@@ -170,6 +170,63 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
 		//送信して更新
 		//$window.location.reload();
 	};
+
+
+    $scope.submit = function(file) {
+        if (file) {
+            $scope.upload(file);
+            console.log('success');
+        }
+    };
+
+
+
+    // upload on file select or drop
+    /*
+    $scope.upload = function (file) {
+        Upload.upload({
+            url: 'upload/url',
+            data: {file: file, 'username': $scope.username}
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+    };
+    */
+
+    $scope.upload = function (file) {
+        Upload.upload({
+            url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/images',
+            data: {file: file}
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            console.log(resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+    };
+
+    /*
+    $scope.upload = function (file) {
+        Upload.upload({
+            url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/images',
+            data: {file: file}
+        })
+        .success(function(data, status, headers, config){
+            console.log(data);
+        })
+        .error(function(data, status, headers, config){
+            console.log(data);
+        });
+    };
+    */
 
 
 }]);

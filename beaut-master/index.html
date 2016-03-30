@@ -9,6 +9,8 @@
     <script src="controller.js"></script>
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.4/angular-material.min.js"></script>
+    <script src="./bower_components/ng-file-upload-shim/ng-file-upload-shim.min.js"></script>
+    <script src="./bower_components/ng-file-upload/ng-file-upload.min.js"></script>
 
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
@@ -247,10 +249,17 @@
                     </div>
                     <div class="mdl-grid" ng-show="showInformation==9">
                         <div class="mdl-cell mdl-cell--12-col">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'">
                                 <!-- ng-file-upload を使う -->
                                 写真を追加する
                             </button>
+                            <p>
+                                Image thumbnail:
+                            </p>
+                            <img ngf-thumbnail="file" ngf-size="{width: 200, height: 200, quality: 0.8}">
+                            <p>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="submit(file)">submit</button>
+                            </p>
                         </div>
                     </div>
                     <div class="mdl-grid">
