@@ -12,9 +12,9 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
     $http({
             method: 'GET',
             //本番API
-            //url: 'http://api.beaut.asia/v1/stores',
+            url: 'http://api.beaut.asia/v1/stores',
             //モックサーバー
-            url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
+            //url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
         })
         .success(function(data, status, headers, config) {
             $scope.storeData = data;
@@ -35,9 +35,9 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         $http({
                 method: 'GET',
                 //本番API
-                //url: 'http://api.beaut.asia/v1/stores',
+                url: 'http://api.beaut.asia/v1/stores',
                 //モックサーバー
-                url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
+                //url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
             })
             .success(function(data, status, headers, config) {
                 $scope.storeData = data;
