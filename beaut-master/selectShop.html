@@ -37,23 +37,13 @@
                         </div>
                     </form>
                 </div>
-                <div>
+                <div style="margin:10px;">
                     <span class="mdl-layout-title">カテゴリID</span>
-                    <form action="#">
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="newCategoryId"></textarea>
-                            <label class="mdl-textfield__label" for="sample5"></label>
-                        </div>
-                    </form>
+                    <select ng-model="newCategoryId" ng-options="c.name for c in categorySelector"></select>
                 </div>
-                <div>
-                    <span class="mdl-layout-title">県Id</span>
-                    <form action="#">
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="newPrefectureId"></textarea>
-                            <label class="mdl-textfield__label" for="sample5"></label>
-                        </div>
-                    </form>
+                <div style="margin-top:30px;">
+                    <span class="mdl-layout-title">店舗所在県</span>
+                    <select ng-model="newPrefectureId" ng-options="p.prefecture for p in prefectureSelector"></select>
                 </div>
                 <br>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="addStore=0">
