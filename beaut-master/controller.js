@@ -12,7 +12,7 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
     $http({
             method: 'GET',
             //本番API
-            url:'http://api.beaut.asia/v1/stores',
+            url: 'http://api.beaut.asia/v1/stores',
             //モックサーバー
             //url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
         })
@@ -35,7 +35,7 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         $http({
                 method: 'GET',
                 //本番API
-                url:'http://api.beaut.asia/v1/stores',
+                url: 'http://api.beaut.asia/v1/stores',
                 //モックサーバー
                 //url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
             })
@@ -107,32 +107,32 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         //console.log($scope.result.id);
 
         //メニューデータ
-		if($scope.newMenuData != undefined){
-        	var newMenuData = {
-        		name: $scope.newMenuName,
-        		description: $scope.newMenuDescription,
-        		price: $scope.newMenuPrice,
-        		contentUri: $scope.newImageUri
-        	};
-        	$scope.result.menuData.push(newMenuData);
-		}
+        if ($scope.newMenuData != undefined) {
+            var newMenuData = {
+                name: $scope.newMenuName,
+                description: $scope.newMenuDescription,
+                price: $scope.newMenuPrice,
+                contentUri: $scope.newImageUri
+            };
+            $scope.result.menuData.push(newMenuData);
+        }
 
         //スタッフデータ
-		if($scope.newStaffName != undefined){
-        	var newStaffData = {
-            	name: $scope.newStaffName,
-            	description: $scope.newStaffDescription,
-            	contentUri: $scope.newImageUri,
-            	following: false,
-            	followersCount: 0,
-            	postsCount: 0,
-            	likesCount: 0
-        	};
-        	$scope.result.staffData.push(newStaffData);
-		}
+        if ($scope.newStaffName != undefined) {
+            var newStaffData = {
+                name: $scope.newStaffName,
+                description: $scope.newStaffDescription,
+                contentUri: $scope.newImageUri,
+                following: false,
+                followersCount: 0,
+                postsCount: 0,
+                likesCount: 0
+            };
+            $scope.result.staffData.push(newStaffData);
+        }
 
         //サンプル
-		/*
+        /*
         //お気に入り登録ボタン
         $scope.addBookmarkButton = function() {
             console.log('add Bookmark');
@@ -158,67 +158,69 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         };
 		*/
 
-		//PUT処理
-		$http({
-			//本番ではPUTに置き換える
-			method: 'PUT',
-			//本番ではURLにidを付与すること
-			url: 'http://api.beaut.asia/v1/stores' + $scope.result.id,
-			//headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-			headers:{'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-			'X-Beaut-Session-Id':'153cb953f43138e5c289334455331234'},
-			data:{
-				id: $scope.result.id,
-				name: $scope.result.name,
-				zipcode: $scope.result.zipcode,
-				address1: $scope.result.address1,
-				address2: $scope.result.address2,
-				address3: $scope.result.address3,
-				tel: $scope.result.tel,
-				hours: $scope.result.hours,
-				hoursNote: $scope.result.hoursNote,
-				route: $scope.result.route,
-				direction: $scope.result.direction,
-				siteUrl: $scope.result.siteUrl,
-				seatCount: $scope.result.seatCount,
-				staffCount: $scope.result.staffCount,
-				parkingCount: $scope.result.parkingCount,
-				jobOffer: $scope.result.jobOffer,
-				menuData: $scope.result.menuData,
-				staffData: $scope.result.staffData,
-				categoryId: $scope.result.categoryId,
-				areaId: $scope.result.areaId,
-				prefectureId: $scope.result.prefectureId,
-				holidays: $scope.result.holidays,
-				creditcard: $scope.result.creditcard,
-				creditcardBrands: $scope.result.creditcardBrands,
-				blogUrl: $scope.result.blogUrl,
-				goodNote: $scope.result.goodNote,
-				note: $scope.result.note,
-				galleryData: $scope.result.galleryData,
-				directionData: $scope.result.directionData,
-				following: $scope.result.following,
-				followersCount: $scope.result.followersCount,
-				postsCount: $scope.result.postsCount,
-				likesCount: $scope.result.likesCount,
-				body: $scope.result.body,
-				contentUri: $scope.result.contentUri,
-				publishedAt: $scope.result.publishedAt,
-				closedAt: $scope.result.closedAt,
-				liked: $scope.result.liked
-			}
-		})
-		.success(function(data,status, headers, config){
-			console.log('success!');
-			$window.location.reload();
-		})
-		.error(function(data, status, headers, config){
-			console.log('error!' + status);
-		});
+        //PUT処理
+        $http({
+                //本番ではPUTに置き換える
+                method: 'PUT',
+                //本番ではURLにidを付与すること
+                url: 'http://api.beaut.asia/v1/stores' + $scope.result.id,
+                //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'X-Beaut-Session-Id': '153cb953f43138e5c289334455331234'
+                },
+                data: {
+                    id: $scope.result.id,
+                    name: $scope.result.name,
+                    zipcode: $scope.result.zipcode,
+                    address1: $scope.result.address1,
+                    address2: $scope.result.address2,
+                    address3: $scope.result.address3,
+                    tel: $scope.result.tel,
+                    hours: $scope.result.hours,
+                    hoursNote: $scope.result.hoursNote,
+                    route: $scope.result.route,
+                    direction: $scope.result.direction,
+                    siteUrl: $scope.result.siteUrl,
+                    seatCount: $scope.result.seatCount,
+                    staffCount: $scope.result.staffCount,
+                    parkingCount: $scope.result.parkingCount,
+                    jobOffer: $scope.result.jobOffer,
+                    menuData: $scope.result.menuData,
+                    staffData: $scope.result.staffData,
+                    categoryId: $scope.result.categoryId,
+                    areaId: $scope.result.areaId,
+                    prefectureId: $scope.result.prefectureId,
+                    holidays: $scope.result.holidays,
+                    creditcard: $scope.result.creditcard,
+                    creditcardBrands: $scope.result.creditcardBrands,
+                    blogUrl: $scope.result.blogUrl,
+                    goodNote: $scope.result.goodNote,
+                    note: $scope.result.note,
+                    galleryData: $scope.result.galleryData,
+                    directionData: $scope.result.directionData,
+                    following: $scope.result.following,
+                    followersCount: $scope.result.followersCount,
+                    postsCount: $scope.result.postsCount,
+                    likesCount: $scope.result.likesCount,
+                    body: $scope.result.body,
+                    contentUri: $scope.result.contentUri,
+                    publishedAt: $scope.result.publishedAt,
+                    closedAt: $scope.result.closedAt,
+                    liked: $scope.result.liked
+                }
+            })
+            .success(function(data, status, headers, config) {
+                console.log('success!');
+                $window.location.reload();
+            })
+            .error(function(data, status, headers, config) {
+                console.log('error!' + status);
+            });
     };
 
 
-	//写真投稿フォーム
+    //写真投稿フォーム
     $scope.submit = function(file) {
         if (file) {
             $scope.upload(file);
@@ -226,7 +228,7 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         }
     };
 
-	//写真をサーバーに投げる
+    //写真をサーバーに投げる
     $scope.upload = function(file) {
         Upload.upload({
             url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/images',
@@ -245,5 +247,27 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         });
     };
 
-
+    //店舗追加ボタン
+    $scope.newStore = function() {
+		console.log('new Store');
+		console.log($scope.newStoreName);
+        $http({
+                method: 'PUT',
+                url: 'http://api.beaut.asia/v1/stores',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'X-Beaut-Session-Id': '153cb953f43138e5c289334455331234'
+                },
+                data: {
+                    name: $scope.newStoreName
+                }
+            })
+            .success(function(data, status, headers, config) {
+                console.log('success!');
+                $window.location.reload();
+            })
+            .error(function(data, status, headers, config) {
+                console.log('error!' + status);
+            });
+    };
 }]);
