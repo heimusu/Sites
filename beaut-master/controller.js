@@ -149,6 +149,7 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
 		}
 		*/
 
+		/*
 		//その他情報
 		console.log($scope.result.categoryId);
 		console.log($scope.result.areaId);
@@ -166,8 +167,31 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
 		console.log($scope.result.followersCount);
 		console.log($scope.result.postsCount);
 		console.log($scope.result.likesCount);
+		*/
+		/*
+		//メニューデータ
+		var newMenuData = {
+			name: $scope.newMenuName,
+			description: $scope.newMenuDescription,
+			price: $scope.newMenuPrice,
+			contentUri: $scope.newImageUri
+		};
+		$scope.result.menuData.push(newMenuData);
+		*/
+		//スタッフデータ
+		var newStaffData = {
+			name: $scope.newStaffName,
+			description: $scope.newStaffDescription,
+			contentUri: $scope.newImageUri,
+			following: false,
+			followersCount: 0,
+			postsCount: 0,
+			likesCount: 0
+		};
+		$scope.result.staffData.push(newStaffData);
+		console.log($scope.result.staffData);
 
-		//送信して更新
+		//送信後に更新
 		//$window.location.reload();
 	};
 
@@ -186,7 +210,8 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
             data: {file: file}
         }).then(function (resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            console.log(resp.data);
+			$scope.newImageUri = resp.data.imageUrl;
+			//console.log($scope.newImageUri);
         }, function (resp) {
             console.log('Error status: ' + resp.status);
         }, function (evt) {
