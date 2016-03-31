@@ -12,9 +12,9 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
     $http({
             method: 'GET',
             //本番API
-            //url:'http://api.beaut.asia/v1/stores',
+            url:'http://api.beaut.asia/v1/stores',
             //モックサーバー
-            url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
+            //url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
         })
         .success(function(data, status, headers, config) {
             $scope.storeData = data;
@@ -35,9 +35,9 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         $http({
                 method: 'GET',
                 //本番API
-                //url:'http://api.beaut.asia/v1/stores',
+                url:'http://api.beaut.asia/v1/stores',
                 //モックサーバー
-                url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
+                //url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
             })
             .success(function(data, status, headers, config) {
                 $scope.storeData = data;
@@ -105,28 +105,31 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         //店舗idに向けてpostを投げれば良いはず…
         //店舗id
         //console.log($scope.result.id);
-		/*
+
         //メニューデータ
-        var newMenuData = {
-        	name: $scope.newMenuName,
-        	description: $scope.newMenuDescription,
-        	price: $scope.newMenuPrice,
-        	contentUri: $scope.newImageUri
-        };
-        $scope.result.menuData.push(newMenuData);
+		if($scope.newMenuData != undefined){
+        	var newMenuData = {
+        		name: $scope.newMenuName,
+        		description: $scope.newMenuDescription,
+        		price: $scope.newMenuPrice,
+        		contentUri: $scope.newImageUri
+        	};
+        	$scope.result.menuData.push(newMenuData);
+		}
 
         //スタッフデータ
-        var newStaffData = {
-            name: $scope.newStaffName,
-            description: $scope.newStaffDescription,
-            contentUri: $scope.newImageUri,
-            following: false,
-            followersCount: 0,
-            postsCount: 0,
-            likesCount: 0
-        };
-        $scope.result.staffData.push(newStaffData);
-		*/
+		if($scope.newStaffName != undefined){
+        	var newStaffData = {
+            	name: $scope.newStaffName,
+            	description: $scope.newStaffDescription,
+            	contentUri: $scope.newImageUri,
+            	following: false,
+            	followersCount: 0,
+            	postsCount: 0,
+            	likesCount: 0
+        	};
+        	$scope.result.staffData.push(newStaffData);
+		}
 
         //サンプル
 		/*
@@ -156,13 +159,14 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
 		*/
 
 		//PUT処理
-		//まずはPOSTでテスト
 		$http({
 			//本番ではPUTに置き換える
-			method: 'POST',
+			method: 'PUT',
 			//本番ではURLにidを付与すること
-			url: './postTest.json',
-			headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+			url: 'http://api.beaut.asia/v1/stores' + $scope.result.id,
+			//headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+			headers:{'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+			'X-Beaut-Session-Id':'153cb953f43138e5c289334455331234'},
 			data:{
 				id: $scope.result.id,
 				name: $scope.result.name,
@@ -206,13 +210,11 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
 		})
 		.success(function(data,status, headers, config){
 			console.log('success!');
+			$window.location.reload();
 		})
 		.error(function(data, status, headers, config){
 			console.log('error!' + status);
 		});
-
-        //送信後に更新
-        //$window.location.reload();
     };
 
 
