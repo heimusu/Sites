@@ -294,11 +294,15 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
     $scope.newStore = function() {
 		console.log('new Store');
 		console.log($scope.newStoreName);
+
 		/*
 		$scope.obj = {
-			name: $scope.newStoreName
+			name: $scope.newStoreName,
+			categoryId: $scope.newCategoryId,
+			prefectureId: $scope.newPrefectureId
 		};
 		*/
+
         $http({
                 method: 'PUT',
                 url: 'http://api.beaut.asia/v1/stores',
@@ -307,7 +311,9 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
                     'X-Beaut-Session-Id': '153cb953f43138e5c289334455331234'
                 },
                 data: {
-                    name: $scope.newStoreName
+                    name: $scope.newStoreName,
+					categoryId: $scope.newCategoryId,
+					prefectureId: $scope.newPrefectureId
                 }
             })
             .success(function(data, status, headers, config) {
@@ -317,5 +323,6 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
             .error(function(data, status, headers, config) {
                 console.log('error!' + status);
             });
+			
     };
 }]);

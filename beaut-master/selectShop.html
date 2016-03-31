@@ -21,7 +21,7 @@
     <div class="topBar">
         <h1>店舗選択ページ</h1>
     </div>
-    <!--<pre>{{ obj | json }}</pre>-->
+    <!-- <pre>{{ obj | json }}</pre> -->
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="addStore=1">
@@ -33,6 +33,24 @@
                     <form action="#">
                         <div class="mdl-textfield mdl-js-textfield">
                             <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="newStoreName"></textarea>
+                            <label class="mdl-textfield__label" for="sample5"></label>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <span class="mdl-layout-title">カテゴリID</span>
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="newCategoryId"></textarea>
+                            <label class="mdl-textfield__label" for="sample5"></label>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <span class="mdl-layout-title">県Id</span>
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="newPrefectureId"></textarea>
                             <label class="mdl-textfield__label" for="sample5"></label>
                         </div>
                     </form>
