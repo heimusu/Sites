@@ -1,0 +1,122 @@
+{
+  "id": "3d62ac0a5f964b7396df9a4e4354319c",
+  "name": "グランフロント大阪",
+  "zipcode": "555-0001",
+  "address1": "大阪市",
+  "address2": "北区大深町",
+  "address3": "4-1",
+  "tel": "06-1234-5678",
+  "hours": [
+    [
+      "10:00",
+      "12:00"
+    ],
+    [
+      "13:00",
+      "21:00"
+    ]
+  ],
+  "hoursNote": "土日祝日も営業",
+  "route": "JR大阪駅徒歩3分\n阪急梅田駅徒歩3分",
+  "direction": "JR大阪駅北口からブリッジ接続\n2Fの連絡デッキからお越しください",
+  "siteUrl": "http://www.grandfront-osaka.jp/",
+  "seatCount": 100,
+  "staffCount": 1000,
+  "parkingCount": 330,
+  "jobOffer": "現在求人は行っておりません。",
+  "menuData": [
+    {
+      "name": "カレー",
+      "description": "メニューの詳細説明\nメニューの詳細説明",
+      "price": 1200,
+      "contentUri": "http://image1-2.tabelog.k-img.com/restaurant/images/Rvw/45204/640x640_rect_45204215.jpg"
+    },
+    {
+      "name": "うな重",
+      "description": "メニューの詳細説明\nメニューの詳細説明",
+      "price": 1500,
+      "contentUri": "http://image1-3.tabelog.k-img.com/restaurant/images/Rvw/41023/640x640_rect_41023780.jpg"
+    }
+  ],
+  "staffData": [
+    {
+      "id": "6bd0cf051c57433dbaade19d77a38951",
+      "name": "スタッフの名前",
+      "description": "スタッフの詳細説明\nスタッフの詳細説明",
+      "contentUri": "http://www.tahb.ac.jp/images/guide/matsui.jpg",
+      "following": true,
+      "followersCount": 50,
+      "postsCount": 30,
+      "likesCount": 100
+    },
+    {
+      "id": "6bd0cf051c57433dbaade19d77a38951",
+      "name": "スタッフの名前2",
+      "description": "スタッフの詳細説明\nスタッフの詳細説明",
+      "contentUri": "http://dqaeric34olch.cloudfront.net/lists/118542/image_1539887.jpg/original?1435132478",
+      "following": false,
+      "followersCount": 50,
+      "postsCount": 30,
+      "likesCount": 100
+    },
+    {
+      "id": "6bd0cf051c57433dbaade19d77a38951",
+      "name": "スタッフの名前3",
+      "description": "スタッフの詳細説明\nスタッフの詳細説明",
+      "contentUri": "http://www.belle.ac.jp/wp-content/uploads/2013/11/afloat.jpg",
+      "following": false,
+      "followersCount": 50,
+      "postsCount": 30,
+      "likesCount": 100
+    }
+  ],
+  "categoryId": 1,
+  "areaId": 2700,
+  "prefectureId": 27,
+  "holidays": [
+    0,
+    2,
+    3
+  ],
+  "creditcard": true,
+  "creditcardBrands": [
+    "V",
+    "M"
+  ],
+  "blogUrl": "",
+  "goodNote": "とくになし",
+  "note": "その他の備考欄です",
+  "galleryData": [
+    {
+      "contentUri": "http://hayam.in/beaut/image/hair_post15.jpg"
+    },
+    {
+      "contentUri": "http://hayam.in/beaut/image/hair_post14.jpg"
+    },
+    {
+      "contentUri": "http://hayam.in/beaut/image/hair_post13.jpg"
+    }
+  ],
+  "directionData": [
+    {
+      "description": "JR大阪駅を出てすぐです",
+      "contentUri": "http://pds.exblog.jp/pds/1/201306/24/61/c0167961_17443917.jpg"
+    },
+    {
+      "description": "1Fからエスカレーターを利用して2Fへ",
+      "contentUri": "http://www.westin-osaka.co.jp/img/access/index/img_access_from_jr_osaka_04.jpg"
+    },
+    {
+      "description": "2Fからだとスムーズに入ることができます",
+      "contentUri": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQtlSPrJnNIMhWwmzYRW0iehDav8bll5KfmoxmXlPdwRgkQz2Yq"
+    },
+    {
+      "description": "3Fからは入れません",
+      "contentUri": "http://rpr.c.yimg.jp/im_siggE5R9Aso0Ulu0hLxFmk3KTw---x540-n1/amd/20130523-00025136-roupeiro-001-17-view.jpg"
+    }
+  ],
+  "following": true,
+  "followersCount": 200,
+  "postsCount": 30,
+  "likesCount": 100
+}
