@@ -7,8 +7,11 @@ module.config(['$locationProvider', function($locationProvider) {
     });
 }]);
 
+module.run(function($http){
+    $http.defaults.headers.post={'X-Beaut-Session-Id': '153cb953f43138e5c289334455331235'};
+});
 
-module.controller('indexController', ['$scope', '$http', '$window', '$location', 'Upload', function($scope, $http, $window, $location, Upload) {
+module.controller('indexController', ['$scope', '$http', '$window', '$location', 'Upload', '$httpParamSerializerJQLike', function($scope, $http, $window, $location, Upload, $httpParamSerializerJQLike) {
     $http({
             method: 'GET',
             //本番API
@@ -296,25 +299,48 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         //console.log($scope.newPrefectureId.id);
         //console.log($scope.newCategoryId.id);
 
-		/*
+
+        /*
 		$scope.obj = {
 			name: $scope.newStoreName,
-			categoryId: $scope.newCategoryId,
-			prefectureId: $scope.newPrefectureId
+			categoryId: $scope.newCategoryId.id,
+			prefectureId: $scope.newPrefectureId.id
 		};
-		*/
+		console.log($scope.obj);
+        */
+
+        /*
+        var url = 'http://api.beaut.asia/v1/stores';
+        var data = {
+            name: $scope.newStoreName,
+            categoryId: $scope.newCategoryId.id,
+            prefectureId: $scope.newPrefectureId.id
+        };
+        $http.jsonp(url,{headers: {'X-Beaut-Session-Id': '153cb953f43138e5c289334455331235'}}).success(function(data){
+	           console.log(data);
+         })
+         .error(function(data, status, headers, config){
+             console.log(data);
+             console.log(status);
+             console.log(headers);
+             console.log(config);
+         });
+         */
+
 
         $http({
-                method: 'PUT',
+                method: 'POST',
                 url: 'http://api.beaut.asia/v1/stores',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                    'X-Beaut-Session-Id': '153cb953f43138e5c289334455331234'
+                    //'Content-type': 'application/json',
+                    'X-Beaut-Session-Id': '153cb953f43138e5c289334455331235'
                 },
+                transformRequest: $httpParamSerializerJQLike,
                 data: {
                     name: $scope.newStoreName,
-					categoryId: $scope.newCategoryId,
-					prefectureId: $scope.newPrefectureId
+					categoryId: $scope.newCategoryId.id,
+					prefectureId: $scope.newPrefectureId.id
                 }
             })
             .success(function(data, status, headers, config) {
@@ -322,8 +348,13 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
                 $window.location.reload();
             })
             .error(function(data, status, headers, config) {
-                console.log('error!' + status);
+                console.log(data);
+                console.log(status);
+                console.log(headers);
+                console.log(config);
             });
+
+
     };
 
         $scope.prefectureSelector = [
