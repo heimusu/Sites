@@ -1,4 +1,4 @@
-module = angular.module('indexMod', ['ngFileUpload']);
+module = angular.module('createMod', ['ngFileUpload']);
 
 module.config(['$locationProvider', function($locationProvider) {
   $locationProvider.html5Mode({
@@ -15,20 +15,7 @@ module.config(['$httpProvider', function($httpProvider) {
   $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;application/json;charset=utf-8';
 }]);
 
-module.controller('indexController', ['$scope', '$http', '$window', '$location', 'Upload', '$httpParamSerializerJQLike', function($scope, $http, $window, $location, Upload, $httpParamSerializerJQLike) {
-  $http({
-      method: 'GET',
-      //本番API
-      url: 'http://api.beaut.asia/v1/stores',
-      //モックサーバー
-      //url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
-    })
-    .success(function(data, status, headers, config) {
-      $scope.storeData = data;
-    })
-    .error(function(data, status, headers, config) {
-      console.log('error');
-    });
+module.controller('createController', ['$scope', '$http', '$window', '$location', 'Upload', '$httpParamSerializerJQLike', function($scope, $http, $window, $location, Upload, $httpParamSerializerJQLike) {
 
   //店舗詳細画面への遷移ボタン
   $scope.changeShop = function(index) {
@@ -38,24 +25,6 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
   var paramName = "shop";
   var param = $location.search()[paramName];
   $scope.index = param;
-
-  if ($scope.index != undefined) {
-    $http({
-        method: 'GET',
-        //本番API
-        url: 'http://api.beaut.asia/v1/stores',
-        //モックサーバー
-        //url: 'http://private-cb543-beautapiv1.apiary-mock.com/v1/stores?limit=10&offset=20&categoryId=1&q=サロン'
-      })
-      .success(function(data, status, headers, config) {
-        $scope.storeData = data;
-        $scope.result = $scope.storeData[$scope.index];
-
-      })
-      .error(function(data, status, headers, config) {
-        console.log('error');
-      });
-  }
 
   //タブ切り替え
   $scope.tabShop = true;
@@ -90,11 +59,11 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
     //ギャラリー一覧から削除
     if (deleteArea == 0) {
       //削除ギミック
-      $scope.result.galleryData.splice(index, 1);
+      $scope.galleryData.splice(index, 1);
     }
     //メニュー一覧から削除
     else if (deleteArea == 1) {
-      $scope.result.menuData.splice(index, 1);
+      $scope.menuData.splice(index, 1);
     }
   };
 
@@ -117,7 +86,7 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         price: $scope.newMenuPrice,
         contentUri: $scope.newImageUri
       };
-      $scope.result.menuData.push(newMenuData);
+      $scope.menuData.push(newMenuData);
     }
 
     //スタッフデータ
@@ -131,51 +100,50 @@ module.controller('indexController', ['$scope', '$http', '$window', '$location',
         postsCount: 0,
         likesCount: 0
       };
-      $scope.result.staffData.push(newStaffData);
+      $scope.staffData.push(newStaffData);
     }
-    //PUT処理
     $http({
-        method: 'PUT',
-        url: 'http://api.beaut.asia/v1/stores/' + $scope.result.id,
+        method: 'POST',
+        url: 'http://api.beaut.asia/v1/stores',
         //'http://api.beaut.asia/v1/stores/569f4c5913926a669d5e857a'
         data: {
-          name: $scope.result.name,
-          zipcode: $scope.result.zipcode,
-          address1: $scope.result.address1,
-          address2: $scope.result.address2,
-          address3: $scope.result.address3,
-          tel: $scope.result.tel,
-          hours: $scope.result.hours,
-          hoursNote: $scope.result.hoursNote,
-          route: $scope.result.route,
-          direction: $scope.result.direction,
-          siteUrl: $scope.result.siteUrl,
-          seatCount: $scope.result.seatCount,
-          staffCount: $scope.result.staffCount,
-          parkingCount: $scope.result.parkingCount,
-          jobOffer: $scope.result.jobOffer,
-          menuData: $scope.result.menuData,
-          staffData: $scope.result.staffData,
-          categoryId: $scope.result.categoryId,
-          areaId: $scope.result.areaId,
-          prefectureId: $scope.result.prefectureId,
-          holidays: $scope.result.holidays,
-          creditcard: $scope.result.creditcard,
-          creditcardBrands: $scope.result.creditcardBrands,
-          blogUrl: $scope.result.blogUrl,
-          goodNote: $scope.result.goodNote,
-          note: $scope.result.note,
-          galleryData: $scope.result.galleryData,
-          directionData: $scope.result.directionData,
-          following: $scope.result.following,
-          followersCount: $scope.result.followersCount,
-          postsCount: $scope.result.postsCount,
-          likesCount: $scope.result.likesCount,
-          body: $scope.result.body,
-          contentUri: $scope.result.contentUri,
-          publishedAt: $scope.result.publishedAt,
-          closedAt: $scope.result.closedAt,
-          liked: $scope.result.liked
+          name: $scope.name,
+          zipcode: $scope.zipcode,
+          address1: $scope.address1,
+          address2: $scope.address2,
+          address3: $scope.address3,
+          tel: $scope.tel,
+          hours: $scope.hours,
+          hoursNote: $scope.hoursNote,
+          route: $scope.route,
+          direction: $scope.direction,
+          siteUrl: $scope.siteUrl,
+          seatCount: $scope.seatCount,
+          staffCount: $scope.staffCount,
+          parkingCount: $scope.parkingCount,
+          jobOffer: $scope.jobOffer,
+          menuData: $scope.menuData,
+          staffData: $scope.staffData,
+          categoryId: $scope.categoryId,
+          areaId: $scope.areaId,
+          prefectureId: $scope.prefectureId,
+          holidays: $scope.holidays,
+          creditcard: $scope.creditcard,
+          creditcardBrands: $scope.creditcardBrands,
+          blogUrl: $scope.blogUrl,
+          goodNote: $scope.goodNote,
+          note: $scope.note,
+          galleryData: $scope.galleryData,
+          directionData: $scope.directionData,
+          following: $scope.following,
+          followersCount: $scope.followersCount,
+          postsCount: $scope.postsCount,
+          likesCount: $scope.likesCount,
+          body: $scope.body,
+          contentUri: $scope.contentUri,
+          publishedAt: $scope.publishedAt,
+          closedAt: $scope.closedAt,
+          liked: $scope.liked
         }
       })
       .success(function(data, status, headers, config) {

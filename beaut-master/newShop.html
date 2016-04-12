@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html ng-app="createMod">
+
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <title>beaut-master</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+  <script src="createShopController.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.4/angular-material.min.js"></script>
+  <script src="./bower_components/ng-file-upload-shim/ng-file-upload-shim.min.js"></script>
+  <script src="./bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+
+<body ng-controller="createController">
+  <div class="topBar">
+    <h1>新規店舗登録ページ</h1>
+    <!-- タブ部分 -->
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#starks-panel" class="mdl-tabs__tab is-active" ng-click="changeTab($event)" id="shop">店舗情報</a>
+        <a href="#lannisters-panel" class="mdl-tabs__tab" ng-click="changeTab($event)" id="menu">メニュー情報</a>
+        <a href="#targaryens-panel" class="mdl-tabs__tab" ng-click="changeTab($event)" id="staff">スタッフ情報</a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- 店舗情報タブ -->
+  <dl ng-show="tabShop">
+    <!-- サイドバー -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">店舗情報</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=0">店舗名</a>
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=1">店舗住所</a>
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=2">営業時間</a>
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=3">アクセス方法</a>
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=4">店舗ページ</a>
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=5">座席数</a>
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=6">スタッフ数</a>
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=7">駐車場</a>
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=8">求人</a>
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=9">ギャラリー写真</a>
+          <a class="mdl-navigation__link" href="" ng-click="showInformation=10">都道府県・カテゴリ設定</a>
+        </nav>
+      </div>
+    </div>
+
+
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <div class="mdl-gird">
+          <div class="mdl-cell mdl-cell--12-col">
+            <h3>店舗情報</h3>
+          </div>
+        </div>
+        <div ng-show="showInformation==0">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <span class="mdl-layout-title">店舗名</span>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="name"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+              </dd>
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="showInformation==1">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <span class="mdl-layout-title">店舗住所</span>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="zipcode"></textarea>
+                  <label class="mdl-textfield__label" for="sample5">〒</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="address1"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="address2"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="address3"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+              </dd>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <span>電話番号</span>
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="tel"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+              </dd>
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="showInformation==2">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <span class="mdl-layout-title">営業時間</span>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="hours"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+                <span ng-if="$last" ng-init="update()"></span>
+              </dd>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="hoursNote"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+              </dd>
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="showInformation==3">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <span class="mdl-layout-title">アクセス方法</span>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="route"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+              </dd>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="direction"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+              </dd>
+            </div>
+          </div>
+        </div>
+
+
+        <div ng-show="showInformation==4">
+          <div class="mdl-grid">
+            <div class="mdl-cell--12-col">
+              <span class="mdl-layout-title">店舗ページ</span>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="siteUrl"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+              </dd>
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="showInformation==5">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <span class="mdl-layout-title">座席数</span>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input mdl-shadow--4dp" type="text" rows="3" ng-model="seatCount"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+              </dd>
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="showInformation==6">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <span class="mdl-layout-title">スタッフ数</span>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="staffCount"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+              </dd>
+            </div>
+          </div>
+        </div>
+        <div ng-show="showInformation==7">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <dt>
+                        <span class="mdl-layout-title">駐車場：有り</span>
+                        <dd>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows= "3" ng-model="parkingCount"></textarea>
+                                <label class="mdl-textfield__label" for="sample5"></label>
+                            </div>
+                        </dd>
+                    </dt>
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="showInformation==8">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <span class="mdl-layout-title">求人</span>
+              <dd>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="jobOffer"></textarea>
+                  <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+              </dd>
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="showInformation==9">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h5>ギャラリー風景</h5>
+            </div>
+          </div>
+          <!--
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--4-col" ng-repeat="g in galleryData">
+                            <div class="mdl-card mdl-shadow--2dp">
+                                <img src={{g.contentUri}}>
+                                <div class="mdl-card__title mdl-card--expand">ギャラリー風景{{$index}}</div>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="deleteImage($index,0)">
+                                    削除
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    <div class="mdl-cell mdl-cell--12-col">
+                      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'">
+                        追加する写真を選ぶ
+                      </button>
+                      <p>
+                        Image thumbnail:
+                      </p>
+                      <img ngf-thumbnail="file" ngf-size="{width: 200, height: 200, quality: 0.8}">
+                      <p>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="submit(file)">submit</button>
+                      </p>
+                      <p>
+                        ※追加する写真を選んでsubmitした後にも，“編集結果を送信する”ボタンを押してください
+                      </p>
+                    </div>
+        </div>
+
+
+        <div ng-show="showInformation==10">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <div style="margin:10px;">
+                <span class="mdl-layout-title">カテゴリID</span>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <select class="mdl-textfield__input" ng-model="newCategoryId" ng-options="c.name for c in categorySelector"></select>
+                </div>
+              </div>
+              <div style="margin-top:30px;">
+                <span class="mdl-layout-title">店舗所在県</span>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <select class="mdl-textfield__input" ng-model="newPrefectureId" ng-options="p.prefecture for p in prefectureSelector"></select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect  mdl-color--red-300 mdl-color-text--white" ng-click="newStore()">
+              <!-- ng-submitを使う -->
+              入力結果を送信する
+            </button>
+          </div>
+        </div>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+            <a href="index.html" target="_self">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--light-blue-300 mdl-color-text--white">
+                店舗一覧へ戻る
+              </button>
+            </a>
+          </div>
+        </div>
+    </dl>
+    </div>
+  </main>
+
+  <!-- メニュータブ -->
+  <dl ng-show="tabMenu">
+    <!-- サイドバー -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">メニュー情報</span>
+        <!--
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="" ng-repeat="m in result.menuData" ng-click="showMenu($index)">メニュー情報{{$index}}</a>
+                </nav>
+                -->
+      </div>
+    </div>
+    <!--
+        <dd ng-repeat="m in result.menuData" ng-show="$index==showMenuNumber">
+            <h3>
+                メニュー情報{{$index}}
+            </h3>
+            <p>
+                <img width="480" height="320" src={{m.contentUri}}>
+            </p>
+            <div class="mdl-textfield mdl-js-textfield">
+                <span class="mdl-layout-title">メニュー名</span>
+                <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="m.name">{{m.name}}</textarea>
+                <label class="mdl-textfield__label" for="sample5"></label>
+            </div>
+            <span class="mdl-layout-title">メニューの説明</span>
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="m.description">{{m.description}}</textarea>
+                <label class="mdl-textfield__label" for="sample5"></label>
+            </div>
+
+            <span class="mdl-layout-title">価格</span>
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="m.price">{{m.price}}</textarea>
+                <label class="mdl-textfield__label" for="sample5"></label>
+            </div>
+            <div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="deleteImage($index,1)">
+                    削除
+                </button>
+            </div>
+        </dd>
+        -->
+  </dl>
+
+  <!-- スタッフタブ -->
+  <dl ng-show="tabStaff">
+    <!-- サイドバー -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">スタッフ情報</span>
+        <!--
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="" ng-repeat="m in result.staffData" ng-click="showStaff($index)">スタッフ情報{{$index}}</a>
+                </nav>
+                -->
+      </div>
+    </div>
+    <!--
+        <dd ng-repeat="s in result.staffData" ng-show="$index==showStaffNumber">
+            <h3>
+                スタッフ情報{{$index}}
+            </h3>
+            <div>
+                <span class="mdl-layout-title">スタッフ名</span>
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="s.name">{{s.name}}</textarea>
+                        <label class="mdl-textfield__label" for="sample5"></label>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <span class="mdl-layout-title">スタッフ紹介</span>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="s.description">{{s.description}}</textarea>
+                    <label class="mdl-textfield__label" for="sample5"></label>
+                </div>
+            </div>
+            <div>
+                <span class="mdl-layout-title">スタッフ写真</span>
+                <img width="480" height="540" src={{s.contentUri}}>
+            </div>
+            <div ng-show="s.following">
+                <span class="mdl-layout-title">スタッフフォロワー数</span>
+                <p>
+                    {{s.followersCount}}
+                </p>
+            </div>
+            <div>
+                <span class="mdl-layout-title">スタッフポスト数</span>
+                <p>
+                    {{s.postsCount}}
+                </p>
+            </div>
+            <div>
+                <span class="mdl-layout-title">スタッフライク数</span>
+                <p>
+                    {{s.likesCount}}
+                </p>
+            </div>
+        </dd>
+        -->
+  </dl>
+  <!-- 各種ボタン -->
+  <div class="mdl-grid" ng-hide="tabMenu==0">
+    <div class="mdl-cell mdl-cell--12-col">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="addMenu=1">
+        メニューを追加する
+      </button>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col" ng-show="addMenu==1">
+      <div class="mdl-textfield mdl-js-textfield">
+        <span class="mdl-layout-title">メニュー名</span>
+        <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="newMenuName"></textarea>
+        <label class="mdl-textfield__label" for="sample5"></label>
+      </div>
+      <span class="mdl-layout-title">メニューの説明</span>
+      <div class="mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="newMenuDescription"></textarea>
+        <label class="mdl-textfield__label" for="sample5"></label>
+      </div>
+
+      <span class="mdl-layout-title">価格</span>
+      <div class="mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="newMenuPrice"></textarea>
+        <label class="mdl-textfield__label" for="sample5"></label>
+      </div>
+      <div class="mdl-cell mdl-cell--12-col">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'">
+          追加する写真を選ぶ
+        </button>
+        <p>
+          Image thumbnail:
+        </p>
+        <img ngf-thumbnail="file" ngf-size="{width: 200, height: 200, quality: 0.8}">
+        <p>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="submit(file)">submit</button>
+        </p>
+        <p>
+          ※追加する写真を選んでsubmitした後にも，“編集結果を送信する”ボタンを押してください
+        </p>
+      </div>
+      <br>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="addMenu=0">
+        やめる
+      </button>
+    </div>
+  </div>
+  <div class="mdl-grid" ng-hide="tabStaff==0">
+    <div class="mdl-cell mdl-cell--12-col">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="addStaff=1">
+        スタッフを追加する
+      </button>
+      <div class="mdl-cell mdl-cell--12-col" ng-show="addStaff==1">
+        <!-- 新規スタッフの他パラメータを初期化して設定すること -->
+        <div>
+          <span class="mdl-layout-title">スタッフ名</span>
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield">
+              <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="newStaffName"></textarea>
+              <label class="mdl-textfield__label" for="sample5"></label>
+            </div>
+          </form>
+        </div>
+        <div>
+          <span class="mdl-layout-title">スタッフ紹介</span>
+          <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input  mdl-shadow--4dp" type="text" rows="3" ng-model="newStaffDescription"></textarea>
+            <label class="mdl-textfield__label" for="sample5"></label>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'">
+            追加する写真を選ぶ
+          </button>
+          <p>
+            Image thumbnail:
+          </p>
+          <img ngf-thumbnail="file" ngf-size="{width: 200, height: 200, quality: 0.8}">
+          <p>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="submit(file)">submit</button>
+          </p>
+          <p>
+            ※追加する写真を選んでsubmitした後にも，“編集結果を送信する”ボタンを押してください
+          </p>
+        </div>
+        <br>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="addStaff=0">
+          やめる
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-grid" ng-show="tabShop==0">
+    <div class="mdl-cell mdl-cell--12-col">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--red-300 mdl-color-text--white" ng-click="newStore()">
+        <!-- ng-submitを使う -->
+        入力結果を送信する
+      </button>
+    </div>
+  </div>
+  <div class="mdl-grid" ng-show="tabShop==0">
+    <div class="mdl-cell mdl-cell--12-col">
+      <a href="index.html" target="_self">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--light-blue-300 mdl-color-text--white">
+          店舗一覧へ戻る
+        </button>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>
