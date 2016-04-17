@@ -1,0 +1,14 @@
+<app-menu>
+  <style scoped>
+    :scope { display: block }
+
+    /* [B]コンポーネントのスタイルを定義 */
+  </style>
+
+  <ul>
+    <li each={ opts.items }>
+      <!-- [A]title変数と、url変数でテキストリンク -->
+      <a href={ url }>{title}</a>
+    </li>
+  </ul>
+</app-menu>
