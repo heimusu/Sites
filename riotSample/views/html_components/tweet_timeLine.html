@@ -1,0 +1,52 @@
+<timeline>
+    <div class='col md-8'>
+        <tweetForm></tweetForm>
+        <ul class='tweet_ul'>
+            <li class='tweet_li radius-10' each='{opts.data}' onclick={parent.showData}>
+                <p>
+                    <span style="margin-right:5px; font-size:140%;">{screen_name}</span>
+                    <span style="font-size:110%;">@{name}</span>
+                </p>
+                <p style="text-align:left;">
+                    <h5>{body}</h5>
+                </p>
+                <div style="text-align:left;">
+                    <a class="btn btn-empty" style="padding:4px 30px; min-width:70px; margin-right:5px;">
+                        <span class="icon-star"></span>
+                    </a>
+                    <a class="btn btn-empty" style="padding:4px 30px; min-width:70px; margin-right:5px;">
+                        <span class='icon-refresh-2'></span>
+                    </a>
+                    <a class="btn btn-empty" style="padding:4px 30px; min-width:70px; margin-right:5px;" onclick={parent.deleteTweet}>
+                        <span class='icon-close'></span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // favorite = function()
+        showData(event) {
+            console.log(event.item);
+            // window.location.href = '/user?userId=' + event.item.user_id;
+        }
+
+        deleteTweet(event) {
+            var tweet_id = event.item.id;
+            request.del(endpoint + '/deleteTweet')
+                .send({tweet_id: tweet_id})
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + Cookies.get('access_token'))
+                .end(function (err, res) {
+                    if (err) {
+                        alert('Oh no! error');
+                    }
+                    // else if(セッション認証切れ){     alert('セッションが期限切れです');     Cookies.expire('access_token');     window.location.href('/login'); }
+                    else {
+                        location.reload();
+                    }
+                });
+        }
+    </script>
+</timeline>
