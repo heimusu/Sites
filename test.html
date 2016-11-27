@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+    <script>
+        $(function(){
+            $.ajax({
+                //url:'http://odp.jig.jp/odp/1.0#OpenDataCity',
+                url:'http://sparql.odp.jig.jp/api/v1/sparql?output=json&force-accept=text%2Fplain&query=select+count%28*%29%7B%0D%0A%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E%3Chttp%3A%2F%2Fodp.jig.jp%2Fodp%2F1.0%23OpenDataCity%3E.%0D%0A%7D',
+                type:'GET',
+                dataType:'jsonp',
+                success:function(data){
+                    alert('success!');
+                    console.log(data);
+                },
+                error:function(){
+                    alert('error!');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

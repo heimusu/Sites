@@ -1,0 +1,32 @@
+<app-hero>
+  <style scoped>
+    :scope {
+      /* [B]ここに背景色を設定 */
+      display: block;
+      padding: 12em 0;
+    }
+    /* [C]ここにh1の文字色を設定 */
+  </style>
+
+  <!-- [A]ここにh1タグを追加 -->
+  <h1 onclick="{getData}">{opts.title}</h1>
+  <h2>{opts.name}</h2>
+  <h3>{opts.name2}</h3>
+  <h1>{opts.name3}</h1>
+  <script>
+    getData() {
+    //   var self = this
+    //   request.get('https://api.github.com/users/heimusu')
+    //     .end(function(err, res) {
+    //       console.log(res.body)
+    //       self.name = res.body.name
+    //       opts.name = res.body.name
+    //       self.update()
+    //     })
+    console.log(opts.data)
+    }
+
+
+
+  </script>
+</app-hero>
