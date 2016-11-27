@@ -18,41 +18,6 @@
     <![endif]-->
   <script src="//code.jquery.com/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    google.load('feeds', '1');
-
-    function initialize() {
-      var feed = new google.feeds.Feed("http://d.hatena.ne.jp/heimusu/rss");
-      feed.load(function(rss) {
-        if (!rss.error) {
-          var channel = new Array();
-          var entry = new Array();
-
-          channel['title'] = rss.feed.title;
-          channel['link'] = rss.feed.link;
-          for (var i = 0; i < rss.feed.entries.length; i++) {
-            entry[i] = {
-              title: rss.feed.entries[i].title,
-              link: rss.feed.entries[i].link
-            };
-          }
-          var FeedTitle = '<h3>' +
-            '<a href="' + channel['link'] + '">' + channel['title'] + '</a>' +
-            '</h3>';
-          var FeedContents = '<h4>' +
-            '<a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a>' +
-            '</h4>' +
-            '<h4>' +
-            '<a href="' + entry[1]['link'] + '">' + entry[1]['title'] + '</a>' +
-            '</h4>';
-
-          $('#topicsTitle').append(FeedTitle);
-          $('#topicsContents').append(FeedContents);
-        }
-      });
-    }
-    google.setOnLoadCallback(initialize);
-  </script>
 </head>
 
 <body>
