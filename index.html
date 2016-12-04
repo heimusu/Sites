@@ -8,7 +8,7 @@
   <title>heimusu plus</title>
 
   <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <!-- <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,8 +16,15 @@
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  <script src="//code.jquery.com/jquery.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <!-- <script src="//code.jquery.com/jquery.js"></script> -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Passion+One" rel="stylesheet">
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  <!-- <script src="js/bootstrap.min.js"></script> -->
   <script type="text/javascript">
     google.load('feeds', '1');
 
@@ -26,6 +33,7 @@
       var feed = new google.feeds.Feed("http://heimusu.hatenablog.com/rss");
       feed.load(function(rss) {
         if (!rss.error) {
+          console.log(rss.feed);
           var channel = new Array();
           var entry = new Array();
 
@@ -37,20 +45,23 @@
               link: rss.feed.entries[i].link
             };
           }
-          var FeedTitle = '<h3>' +
-            '<a href="' + channel['link'] + '">' + channel['title'] + '</a>' +
-            '</h3>';
+          // var FeedTitle = '<h3>' +
+          //   '<a href="' + channel['link'] + '">' + channel['title'] + '</a>' +
+          //   '</h3>';
           var FeedContents = '<h4>' +
             '<a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a>' +
             '</h4>' +
             '<h4>' +
             '<a href="' + entry[1]['link'] + '">' + entry[1]['title'] + '</a>' +
             '</h4>' +
-            '<h4>' + 
+            '<h4>' +
             '<a href="' + entry[2]['link'] + '">' + entry[2]['title'] + '</a>' +
+            '</h4>' +
+            '<h4>' +
+            '<a href="' + entry[3]['link'] + '">' + entry[3]['title'] + '</a>' +
             '</h4>';
 
-          $('#topicsTitle').append(FeedTitle);
+          // $('#topicsTitle').append(FeedTitle);
           $('#topicsContents').append(FeedContents);
         }
       });
@@ -60,35 +71,41 @@
 </head>
 
 <body>
-  <center>
-    <div class="hero-unit">
-      <h1>heimusu plus</h1>
-      <p>Welcome to heimusu's personal page!</p>
+  <!-- ヘッダー -->
+  <header>
+    <div class="header">
+      <h1 class="headline">heimusu plus</h1>
+      <h3 class="description">Welcome to heimusu's personal page!</h3>
     </div>
-  </center>
-  <!-- top navgation bar -->
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="about.html">About Me</a></li>
-    <li><a href="http://d.hatena.ne.jp/heimusu/">Blog</a></li>
-    <li><a href="https://twitter.com/heimusu">Twitter</a></li>
-    <li><a href="https://github.com/heimusu">Github</a></li>
-  </ul>
+  </header>
 
-  <div class="container">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="col-lg-7" id="topicsTitle"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th class="col-lg-5" id="topicsContents"></th>
-        </tr>
-      </tbody>
-    </table>
+
+  <!-- メインコンテンツ -->
+  <div class="main">
+    <!-- サイドバー -->
+    <div class="nav">
+      <ul>
+        <li class="active"><a href="#">Home</a></li>
+        <!-- <li><a href="about.html">About Me</a></li> -->
+        <li><a href="http://d.hatena.ne.jp/heimusu/">Blog</a></li>
+        <li><a href="https://twitter.com/heimusu">Twitter</a></li>
+        <li><a href="https://github.com/heimusu">Github</a></li>
+      </ul>
+    </div>
+
+    <!-- メインコンテナ -->
+    <div class="container">
+      <ul>
+        <li id="topicsTitle"></li>
+        <li id="topicsContents"></li>
+      </ul>
+    </div>
   </div>
+
+  <footer>
+    <span>heimusu</span>
+  </footer>
+
 </body>
 
 </html>
