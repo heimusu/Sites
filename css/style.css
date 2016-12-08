@@ -1,6 +1,3 @@
-/*font-family: 'Passion One', cursive;*/
-/*font-family: 'Libre Baskerville', serif;*/
-
 /*グローバル*/
 html,body{
   width: 100%;
@@ -53,9 +50,7 @@ header{
 }
 
 footer{
-  /*position: fixed;*/
   position: absolute;
-  /*bottom: 0;*/
   width: 100%;
   height: 1em;
   text-align: center;
@@ -74,7 +69,6 @@ footer{
     margin: 0 auto;
     width: 100%;
     height: 100%;
-    /*background: repeating-linear-gradient(#444, #444 10px, #888 0, #888 20px);*/
   }
 
   .nav{
@@ -105,12 +99,6 @@ footer{
     font-size: 110%;
     margin: 5px;
     text-align: center;
-  }
-
-  /*ブログカードのWrapper*/
-  #topicsContents{
-    /*margin-top: 30px;*/
-    /*background: repeating-linear-gradient(#444, #444 10px, #888 0, #888 20px);*/
   }
 
   /*カード単体のWrapper*/
@@ -255,7 +243,6 @@ footer{
   /* config end */
 
   position: relative;
-  /*padding-right: 1em;*/
   padding-right: 2em;
   overflow: hidden;
 
