@@ -42,7 +42,9 @@
           for (var i = 0; i < rss.feed.entries.length; i++) {
             entry[i] = {
               title: rss.feed.entries[i].title,
-              link: rss.feed.entries[i].link
+              link: rss.feed.entries[i].link,
+              contentSnippet: rss.feed.entries[i].contentSnippet
+
             };
           }
           // var FeedTitle = '<h3>' +
@@ -64,6 +66,22 @@
           var FeedContents = '<div class="card">' +
             '<span class="thumb-image"></span>' +
             '<div class="card-title"><a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a></div>'+
+            '<p class="card-description">' + entry[0]['contentSnippet'] + '...' + '</p>' +
+            '</div>' +
+            '<div class="card">' +
+              '<span class="thumb-image"></span>' +
+              '<div class="card-title"><a href="' + entry[1]['link'] + '">' + entry[1]['title'] + '</a></div>'+
+              '<p class="card-description">' + entry[1]['contentSnippet'] + '...' + '</p>' +
+            '</div>' +
+            '<div class="card">' +
+              '<span class="thumb-image"></span>' +
+              '<div class="card-title"><a href="' + entry[2]['link'] + '">' + entry[2]['title'] + '</a></div>'+
+              '<p class="card-description">' + entry[2]['contentSnippet'] + '...' + '</p>' +
+            '</div>' +
+            '<div class="card">' +
+              '<span class="thumb-image"></span>' +
+              '<div class="card-title"><a href="' + entry[3]['link'] + '">' + entry[3]['title'] + '</a></div>'+
+              '<p class="card-description">' + entry[3]['contentSnippet'] + '...' + '</p>' +
             '</div>';
 
           // $('#topicsTitle').append(FeedTitle);
@@ -105,11 +123,11 @@
         <li id="topicsContents"></li>
       </ul>
     </div>
-  </div>
 
-  <footer>
-    <span>heimusu</span>
-  </footer>
+    <footer>
+      <span class="footer-description">COPYRIGHT © heimusu ALL RIGHTS RESERVED.</span>
+    </footer>
+  </div>
 
 </body>
 

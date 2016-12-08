@@ -35,6 +35,24 @@ header{
   top: -50px;
 }
 
+.container{
+  position: relative;
+  min-height: 100%;
+}
+
+footer{
+  /*position: fixed;*/
+  position: absolute;
+  /*bottom: 0;*/
+  width: 100%;
+  height: 1em;
+  text-align: center;
+}
+
+.footer-description{
+  width: 100%;
+  font-size: 60%;
+}
 
 /*PC用*/
 @media (min-width: 640px) {
@@ -86,7 +104,7 @@ header{
   .card{
     display: block;
     margin: 0 auto;
-    /*width: 350px;*/
+    margin-bottom: 20px;
     width: 60%;
     background: #fff;
     border-radius: 5px;
@@ -116,10 +134,50 @@ header{
   .card-title{
     display: block;
     position: relative;
+    top:5px;
     left: 10px;
     font-size:150%;
+    margin-bottom: 5px;
   }
 
+
+  .card-description {
+  /* config */
+  line-height: 1.5;
+  /*height: 3em;*/
+  height: 6em;
+  background-color: #fff;
+  /* config end */
+
+  position: relative;
+  /*padding-right: 1em;*/
+  padding-right: 2em;
+  overflow: hidden;
+
+  top:5px;
+  left: 10px;
+  font-size: 80%;
+}
+
+
+.card-description:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: inline-block;
+  width: 1em;
+}
+
+.card-description:after {
+  content: "";
+  position: relative;
+  right: -1em;
+  float: right;
+  width: 1em;
+  height: 100%;
+  background-color: inherit;
+}
 
 }
 
