@@ -187,4 +187,87 @@ footer{
 /*スマホ用*/
 @media (max-width: 640px){
 
+  .nav{
+    display: none;
+  }
+
+  /*カード単体のWrapper*/
+  .card{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 80%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #ccc;
+    overflow: hidden;
+  }
+
+  /*サムネイル*/
+  /*spanタグで画像を中央トリミング*/
+  .thumb-image{
+    background-image: url('../img/thumb.jpg');
+    display: inline-block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    float: left;
+  }
+
+  /*学び*/
+  .card-title:before{
+    content: '';
+    display: block;
+  }
+
+  .card-title{
+    display: block;
+    position: relative;
+    top:5px;
+    left: 10px;
+    font-size:120%;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+  }
+
+
+  .card-description {
+  /* config */
+  line-height: 1.5;
+  height: 3em;
+  background-color: #fff;
+  /* config end */
+
+  position: relative;
+  /*padding-right: 1em;*/
+  padding-right: 2em;
+  overflow: hidden;
+
+  top:5px;
+  left: 10px;
+  font-size: 80%;
+}
+
+
+.card-description:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: inline-block;
+  width: 1em;
+}
+
+.card-description:after {
+  content: "";
+  position: relative;
+  right: -1em;
+  float: right;
+  width: 1em;
+  height: 100%;
+  background-color: inherit;
 }
