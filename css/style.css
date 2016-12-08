@@ -42,6 +42,16 @@ header{
   padding: 30px;
 }
 
+.article-link{
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
 footer{
   /*position: fixed;*/
   position: absolute;
@@ -106,6 +116,7 @@ footer{
   /*カード単体のWrapper*/
   .card{
     display: block;
+    position: relative;
     margin: 0 auto;
     margin-bottom: 20px;
     width: 60%;
@@ -194,6 +205,7 @@ footer{
   /*カード単体のWrapper*/
   .card{
     display: block;
+    position: relative;
     margin: 0 auto;
     margin-bottom: 20px;
     width: 80%;

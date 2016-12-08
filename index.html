@@ -63,22 +63,27 @@
           //   '<a href="' + entry[3]['link'] + '">' + entry[3]['title'] + '</a>' +
           //   '</h4>';
 
-          var FeedContents = '<div class="card">' +
-            '<span class="thumb-image"></span>' +
-            '<div class="card-title"><a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a></div>'+
-            '<p class="card-description">' + entry[0]['contentSnippet'] + '...' + '</p>' +
+          var FeedContents =
+            '<div class="card">' +
+              '<a href="' + entry[0]['link'] + '" class="article-link"></a>' +
+              '<span class="thumb-image"></span>' +
+              '<div class="card-title"><a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a></div>'+
+              '<p class="card-description">' + entry[0]['contentSnippet'] + '...' + '</p>' +
             '</div>' +
             '<div class="card">' +
+              '<a href="' + entry[1]['link'] + '" class="article-link"></a>' +
               '<span class="thumb-image"></span>' +
               '<div class="card-title"><a href="' + entry[1]['link'] + '">' + entry[1]['title'] + '</a></div>'+
               '<p class="card-description">' + entry[1]['contentSnippet'] + '...' + '</p>' +
             '</div>' +
             '<div class="card">' +
+              '<a href="' + entry[2]['link'] + '" class="article-link"></a>' +
               '<span class="thumb-image"></span>' +
               '<div class="card-title"><a href="' + entry[2]['link'] + '">' + entry[2]['title'] + '</a></div>'+
               '<p class="card-description">' + entry[2]['contentSnippet'] + '...' + '</p>' +
             '</div>' +
             '<div class="card">' +
+              '<a href="' + entry[3]['link'] + '" class="article-link"></a>' +
               '<span class="thumb-image"></span>' +
               '<div class="card-title"><a href="' + entry[3]['link'] + '">' + entry[3]['title'] + '</a></div>'+
               '<p class="card-description">' + entry[3]['contentSnippet'] + '...' + '</p>' +
