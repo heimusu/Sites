@@ -48,18 +48,23 @@
           // var FeedTitle = '<h3>' +
           //   '<a href="' + channel['link'] + '">' + channel['title'] + '</a>' +
           //   '</h3>';
-          var FeedContents = '<h4>' +
-            '<a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a>' +
-            '</h4>' +
-            '<h4>' +
-            '<a href="' + entry[1]['link'] + '">' + entry[1]['title'] + '</a>' +
-            '</h4>' +
-            '<h4>' +
-            '<a href="' + entry[2]['link'] + '">' + entry[2]['title'] + '</a>' +
-            '</h4>' +
-            '<h4>' +
-            '<a href="' + entry[3]['link'] + '">' + entry[3]['title'] + '</a>' +
-            '</h4>';
+          // var FeedContents = '<h4>' +
+          //   '<a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a>' +
+          //   '</h4>' +
+          //   '<h4>' +
+          //   '<a href="' + entry[1]['link'] + '">' + entry[1]['title'] + '</a>' +
+          //   '</h4>' +
+          //   '<h4>' +
+          //   '<a href="' + entry[2]['link'] + '">' + entry[2]['title'] + '</a>' +
+          //   '</h4>' +
+          //   '<h4>' +
+          //   '<a href="' + entry[3]['link'] + '">' + entry[3]['title'] + '</a>' +
+          //   '</h4>';
+
+          var FeedContents = '<div class="card">' +
+            '<span class="thumb-image"></span>' +
+            '<div class="card-title"><a href="' + entry[0]['link'] + '">' + entry[0]['title'] + '</a></div>'+
+            '</div>';
 
           // $('#topicsTitle').append(FeedTitle);
           $('#topicsContents').append(FeedContents);

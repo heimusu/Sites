@@ -77,6 +77,50 @@ header{
     text-align: center;
   }
 
+  /*ブログカードのWrapper*/
+  #topicsContents{
+    margin-top: 30px;
+  }
+
+  /*カード単体のWrapper*/
+  .card{
+    display: block;
+    margin: 0 auto;
+    /*width: 350px;*/
+    width: 60%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #ccc;
+    overflow: hidden;
+  }
+
+  /*サムネイル*/
+  /*spanタグで画像を中央トリミング*/
+  .thumb-image{
+    background-image: url('../img/thumb.jpg');
+    display: inline-block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    float: left;
+  }
+
+  /*学び*/
+  .card-title:before{
+    content: '';
+    display: block;
+  }
+
+  .card-title{
+    display: block;
+    position: relative;
+    left: 10px;
+    font-size:150%;
+  }
+
+
 }
 
 /*スマホ用*/
