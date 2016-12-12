@@ -31,10 +31,10 @@
 
     function initialize() {
       //var feed = new google.feeds.Feed("http://d.hatena.ne.jp/heimusu/rss");
-      var feed = new google.feeds.Feed("http://heimusu.hatenablog.com/rss");
+      var feed = new google.feeds.Feed("http://heimusu.hatenablog.com/rss"  + "?" + (new Date()).getTime());
       feed.load(function(rss) {
         if (!rss.error) {
-          console.log(rss.feed);
+          // console.log(rss.feed);
           var channel = new Array();
           var entry = new Array();
 
