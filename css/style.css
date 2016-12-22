@@ -37,7 +37,7 @@ header{
   position: relative;
   min-height: 100%;
   /*background: repeating-linear-gradient(#444, #444 10px, #888 0, #888 20px);*/
-  background: repeating-linear-gradient(-45deg, #fff, #fff 10px, #595959 0, #595959 20px);
+  /*background: repeating-linear-gradient(-45deg, (255, 255, 255, 0.3), (255, 255, 255, 0.3) 10px, (89,89,89, 0.3) 0, (89,89,89, 0.3) 20px);*/
   padding: 30px;
 }
 
