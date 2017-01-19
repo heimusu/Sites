@@ -1,6 +1,6 @@
 $(function(){
     // $.get('http://heimusu.hatenablog.com/rss')
-    $.get('../php/feed.php')
+    $.get('//localhost:3000/php/rss.php')
     .done(function(data){
         console.log(data);
     })
