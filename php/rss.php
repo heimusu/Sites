@@ -2,11 +2,14 @@
 
     // memo
     // http://on-ze.com/archives/5062
-    
+    // http://qiita.com/katzueno/items/b80d76d86314f62e53bc
+
     $url = "http://heimusu.hatenablog.com/rss";
     $xml = file_get_contents($url);
+    $xmlObject = simplexml_load_string($xml);
     header("Content-type: application/xml; charset=UTF-8");
-    print $xml;
+    print( (string)$xmlObject->channel->title );
+    // echo $xml;
 
     // ライブラリの読み込み
     // require_once ($_SERVER['DOCUMENT_ROOT'] . './feed.php');
