@@ -1,6 +1,16 @@
 $(function(){
     // $.get('http://heimusu.hatenablog.com/rss')
-    $.get('//localhost:3000/php/rss.php')
+
+    var url = '';
+    if(/www.heimusu.com/.test(window.location.href)){
+        url = 'php/rss.php';
+    }
+    else {
+        url = '//localhost:3000/php/rss.php';
+    }
+
+
+    $.get(url)
     .done(function(entry){
         // console.log(entry);
 
