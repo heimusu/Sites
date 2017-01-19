@@ -18,9 +18,9 @@
 
     // XMLからJSONにつめつめ
     for($i = 0; $i < 4; $i++){
-        $entryList[$i]['title'] = $xmlObject->channel->item[$i]->title;
-        $entryList[$i]['link'] = $xmlObject->channel->item[$i]->link;
-        $entryList[$i]['description'] = $xmlObject->channel->item[$i]->description;
+        $entryList[$i]['title'] = (string)$xmlObject->channel->item[$i]->title;
+        $entryList[$i]['link'] = (string)$xmlObject->channel->item[$i]->link;
+        $entryList[$i]['description'] = strip_tags((string)$xmlObject->channel->item[$i]->description);
     }
 
     // JSONで出力
