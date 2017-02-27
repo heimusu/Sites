@@ -18,9 +18,14 @@
     <![endif]-->
   <script src="//code.jquery.com/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/eddkaiblahhljlffjnlhcndhcfehgden">
+
 </head>
 
 <body>
+    <h1 id="install-button">いんすこ</h1>
+
+
   <center>
     <div class="hero-unit">
       <h1>heimusu plus</h1>
@@ -113,6 +118,24 @@
       </div>
     </div>
   </center>
+  <script>
+      $(document).on('click', '#install-button', function(evt) {
+          evt.preventDefault();
+
+          if (!('chrome' in window)) {
+              console.log('拡張機能をインストールするには、Google Chrome をご利用ください');
+              return;
+          }
+
+          chrome.webstore.install('', function() {
+              // successCallback
+              alert('インストール完了しました．オプションページから初期設定を行ってください．');
+          }, function(errMessage, code) {
+              // failureCallback
+              console.log(errMessage, code);
+          });
+      });
+  </script>
 </body>
 
 </html>
